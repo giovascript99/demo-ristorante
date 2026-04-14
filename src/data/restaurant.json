@@ -1,0 +1,37 @@
+{
+  "name": "Taverna del Porto",
+  "tagline": "Sapori di mare dal cuore della Calabria",
+  "description": "Ristorante di pesce con vista mare a Tropea, Calabria. Cucina di tradizione dal 1985.",
+  "address": {
+    "street": "Via Marina dell'Isola, 12",
+    "city": "Tropea",
+    "province": "VV",
+    "cap": "89861",
+    "country": "Italia"
+  },
+  "phone": "+39 0963 61234",
+  "email": "info@tavernadelporto.it",
+  "whatsapp": "+390963612345",
+  "whatsappMessage": "Ciao! Vorrei prenotare un tavolo alla Taverna del Porto.",
+  "social": {
+    "facebook": "#",
+    "instagram": "#",
+    "tripadvisor": "#"
+  },
+  "hours": [
+    { "days": "Lunedi", "lunch": "Chiuso", "dinner": "Chiuso" },
+    { "days": "Martedi - Venerdi", "lunch": "12:00 - 14:30", "dinner": "19:00 - 23:00" },
+    { "days": "Sabato", "lunch": "12:00 - 15:00", "dinner": "19:00 - 23:30" },
+    { "days": "Domenica", "lunch": "12:00 - 15:00", "dinner": "19:00 - 22:30" }
+  ],
+  "coordinates": { "lat": 38.6767, "lng": 15.8987 },
+  "vatNumber": "IT01234567890",
+  "priceRange": "$$",
+  "cuisineType": ["Pesce", "Calabrese", "Mediterranea"],
+  "foundedYear": 1985,
+  "chef": {
+    "name": "Marco Ferraro",
+    "title": "Chef e Proprietario",
+    "bio": "Terza generazione di pescatori, prima generazione di chef. Marco ha portato la tradizione di famiglia in cucina, unendo le ricette della nonna ai sapori contemporanei del Mediterraneo."
+  }
+}

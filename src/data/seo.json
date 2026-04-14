@@ -1,0 +1,8 @@
+{
+  "siteName": "Taverna del Porto",
+  "titleTemplate": "%s | Taverna del Porto",
+  "defaultDescription": "Ristorante di pesce con vista mare a Tropea, Calabria. Cucina calabrese di tradizione con pesce fresco del giorno. Prenota il tuo tavolo.",
+  "defaultOgImage": "/og-image.jpg",
+  "locale": "it_IT",
+  "siteUrl": "https://taverna-del-porto.vercel.app"
+}
