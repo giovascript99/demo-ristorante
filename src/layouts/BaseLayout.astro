@@ -10,9 +10,10 @@ interface Props {
   description: string;
   ogImage?: string;
   ogType?: string;
+  transparentNav?: boolean;
 }
 
-const { title, description, ogImage, ogType } = Astro.props;
+const { title, description, ogImage, ogType, transparentNav = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
@@ -23,7 +24,7 @@ const currentPath = Astro.url.pathname;
   </head>
   <body class="bg-sand text-text font-body min-h-screen flex flex-col">
     <a href="#main-content" class="skip-link">Vai al contenuto</a>
-    <Navbar currentPath={currentPath} />
+    <Navbar currentPath={currentPath} transparent={transparentNav} />
     <main id="main-content" class="flex-1">
       <slot />
     </main>
