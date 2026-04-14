@@ -21,7 +21,6 @@ const whatsappHref = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g,
 <nav
   id="main-nav"
   class="fixed top-0 left-0 right-0 z-40 transition-colors duration-300"
-  transition:persist
 >
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
     <!-- Logo / Name -->
@@ -113,13 +112,12 @@ const whatsappHref = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g,
 </nav>
 
 <script>
+document.addEventListener('astro:page-load', () => {
   // Navbar scroll opacity
   const nav = document.getElementById("main-nav");
   if (nav) {
     window.addEventListener("scroll", () => {
-      nav.classList.toggle("bg-navy/95", window.scrollY > 50);
-      nav.classList.toggle("backdrop-blur-sm", window.scrollY > 50);
-      nav.classList.toggle("shadow-lg", window.scrollY > 50);
+      nav.classList.toggle("nav-scrolled", window.scrollY > 50);
     }, { passive: true });
   }
 
@@ -156,4 +154,5 @@ const whatsappHref = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g,
       closeMenu();
     }
   });
+});
 </script>

@@ -77,16 +77,18 @@ const { recipientEmail = "" } = Astro.props;
 </div>
 
 <script>
-  const form = document.getElementById("contact-form") as HTMLFormElement | null;
-  const success = document.getElementById("form-success");
+  document.addEventListener("astro:page-load", () => {
+    const form = document.getElementById("contact-form");
+    const success = document.getElementById("form-success");
 
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-    form.classList.add("hidden");
-    success?.classList.remove("hidden");
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      form.classList.add("hidden");
+      success?.classList.remove("hidden");
+    });
   });
 </script>

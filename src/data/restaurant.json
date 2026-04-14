@@ -11,7 +11,7 @@
   },
   "phone": "+39 0963 61234",
   "email": "info@tavernadelporto.it",
-  "whatsapp": "+390963612345",
+  "whatsapp": "+39096361234",
   "whatsappMessage": "Ciao! Vorrei prenotare un tavolo alla Taverna del Porto.",
   "social": {
     "facebook": "#",
@@ -19,8 +19,8 @@
     "tripadvisor": "#"
   },
   "hours": [
-    { "days": "Lunedi", "lunch": "Chiuso", "dinner": "Chiuso" },
-    { "days": "Martedi - Venerdi", "lunch": "12:00 - 14:30", "dinner": "19:00 - 23:00" },
+    { "days": "Lunedì", "lunch": "Chiuso", "dinner": "Chiuso" },
+    { "days": "Martedì - Venerdì", "lunch": "12:00 - 14:30", "dinner": "19:00 - 23:00" },
     { "days": "Sabato", "lunch": "12:00 - 15:00", "dinner": "19:00 - 23:30" },
     { "days": "Domenica", "lunch": "12:00 - 15:00", "dinner": "19:00 - 22:30" }
   ],

@@ -14,7 +14,7 @@
       "name": "Primi",
       "items": [
         { "name": "Spaghetti allo Scoglio", "description": "Spaghetti con cozze, vongole, gamberi e pomodorino fresco", "price": 18, "featured": true },
-        { "name": "Paccheri al Ragu di Pesce Spada", "description": "Paccheri di Gragnano con ragu di pesce spada, olive e capperi", "price": 20 },
+        { "name": "Paccheri al Ragù di Pesce Spada", "description": "Paccheri di Gragnano con ragù di pesce spada, olive e capperi", "price": 20 },
         { "name": "Risotto ai Frutti di Mare", "description": "Riso Carnaroli mantecato con frutti di mare e zafferano", "price": 22 },
         { "name": "Fileja alla Tropeana", "description": "Pasta fresca calabrese con cipolla rossa di Tropea, tonno e pomodorini", "price": 16 },
         { "name": "Linguine all'Astice", "description": "Linguine con mezzo astice, pomodoro pachino e basilico fresco", "price": 28, "tags": ["speciale"] }
@@ -42,7 +42,7 @@
     {
       "name": "Dolci",
       "items": [
-        { "name": "Tiramisu della Casa", "description": "Ricetta della nonna con mascarpone e caffe espresso", "price": 8 },
+        { "name": "Tiramisu della Casa", "description": "Ricetta della nonna con mascarpone e caffè espresso", "price": 8 },
         { "name": "Tartufo di Pizzo", "description": "Il classico gelato al cioccolato e nocciola di Pizzo Calabro", "price": 7 },
         { "name": "Semifreddo al Bergamotto", "description": "Semifreddo cremoso al bergamotto di Reggio Calabria", "price": 9 },
         { "name": "Frutta di Stagione", "description": "Selezione di frutta fresca locale", "price": 6 }
@@ -56,7 +56,7 @@
         { "name": "Vino della Casa", "description": "Bianco o rosso, Ciro DOC (bottiglia)", "price": 18 },
         { "name": "Birra Artigianale", "description": "Birra locale calabrese (33cl)", "price": 5 },
         { "name": "Limoncello della Casa", "description": "Fatto in casa con limoni di Calabria", "price": 4 },
-        { "name": "Caffe Espresso", "description": "Miscela napoletana", "price": 1.5 }
+        { "name": "Caffè Espresso", "description": "Miscela napoletana", "price": 1.5 }
       ]
     }
   ]

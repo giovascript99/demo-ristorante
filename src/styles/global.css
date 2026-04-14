@@ -114,6 +114,14 @@ h1, h2, h3, h4 {
   }
 }
 
+/* Navbar scroll state */
+.nav-scrolled {
+  background-color: color-mix(in srgb, var(--color-navy) 95%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
 /* Skip link */
 .skip-link {
   position: absolute;

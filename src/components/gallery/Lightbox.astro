@@ -58,9 +58,6 @@ const { images } = Astro.props;
   const dialog = document.getElementById("lightbox-dialog");
   const content = document.getElementById("lightbox-content");
   const counter = document.getElementById("lightbox-counter");
-  const closeBtn = document.getElementById("lightbox-close");
-  const prevBtn = document.getElementById("lightbox-prev");
-  const nextBtn = document.getElementById("lightbox-next");
   const waBtn = document.getElementById("whatsapp-button");
   let currentIndex = 0;
 
@@ -79,27 +76,39 @@ const { images } = Astro.props;
 
   function closeLightbox() {
     dialog.close();
-    if (waBtn) waBtn.style.display = "";
   }
 
-  // Gallery button clicks
+  // Guard against re-initialization on repeated ClientRouter navigations
+  if (dialog && !dialog.dataset.initialized) {
+    dialog.dataset.initialized = "true";
+
+    const closeBtn = document.getElementById("lightbox-close");
+    const prevBtn = document.getElementById("lightbox-prev");
+    const nextBtn = document.getElementById("lightbox-next");
+
+    closeBtn?.addEventListener("click", closeLightbox);
+    prevBtn?.addEventListener("click", () => showImage(currentIndex - 1));
+    nextBtn?.addEventListener("click", () => showImage(currentIndex + 1));
+
+    // Restore WhatsApp button whenever the dialog closes (covers both close button and native Escape)
+    dialog.addEventListener("close", () => {
+      if (waBtn) waBtn.style.display = "";
+    });
+
+    // Keyboard navigation — Escape is handled natively by <dialog>
+    dialog.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+      if (e.key === "ArrowRight") showImage(currentIndex + 1);
+    });
+
+    // Close on backdrop click
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) closeLightbox();
+    });
+  }
+
+  // Gallery button clicks — re-bind each time since buttons are fresh DOM after navigation
   document.querySelectorAll("[data-gallery-index]").forEach((btn) => {
     btn.addEventListener("click", () => openLightbox(Number(btn.dataset.galleryIndex)));
-  });
-
-  closeBtn?.addEventListener("click", closeLightbox);
-  prevBtn?.addEventListener("click", () => showImage(currentIndex - 1));
-  nextBtn?.addEventListener("click", () => showImage(currentIndex + 1));
-
-  // Keyboard navigation
-  dialog?.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft") showImage(currentIndex - 1);
-    if (e.key === "ArrowRight") showImage(currentIndex + 1);
-  });
-
-  // Close on backdrop click
-  dialog?.addEventListener("click", (e) => {
-    if (e.target === dialog) closeLightbox();
   });
 </script>

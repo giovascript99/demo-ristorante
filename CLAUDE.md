@@ -1,7 +1,7 @@
 # Taverna del Porto — Project Conventions
 
 ## Stack
-- Astro 5, Tailwind CSS v4 (Vite plugin), no JS frameworks
+- Astro 6, Tailwind CSS v4 (Vite plugin), no JS frameworks
 - Zero JavaScript frameworks — only Astro components + vanilla JS for interactions
 
 ## Components
