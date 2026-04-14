@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #1B2A4A;
+  --color-navy-light: #2A3F6A;
+  --color-gold: #D4A853;
+  --color-gold-light: #E8C97A;
+  --color-sand: #FEFCF6;
+  --color-sand-dark: #F5EFE0;
+  --color-text: #2D2D2D;
+  --color-text-light: #5A5A5A;
+  --color-brick: #8B3A3A;
+  --color-white: #FFFFFF;
+
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Lato", sans-serif;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-sand);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+}
+
+/* Scroll-driven animation keyframes */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-left {
+  from { opacity: 0; transform: translateX(-32px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(32px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes clip-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* Scroll-driven animation classes — progressive enhancement */
+@supports (animation-timeline: view()) {
+  .animate-fade-up {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+
+  .animate-fade-in {
+    animation: fade-in linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 40%;
+  }
+
+  .animate-slide-left {
+    animation: slide-left linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+
+  .animate-slide-right {
+    animation: slide-right linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+
+  .animate-clip-reveal {
+    animation: clip-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+
+  /* Stagger delays for card grids */
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+}
+
+/* WhatsApp pulse */
+@keyframes wa-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+}
+
+/* Hero bounce arrow */
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-navy);
+  color: var(--color-white);
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 0;
+}
