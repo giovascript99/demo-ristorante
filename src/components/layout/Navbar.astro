@@ -1,0 +1,159 @@
+---
+import restaurantData from "../../data/restaurant.json";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "Menu", href: "/menu/" },
+  { label: "Chi Siamo", href: "/chi-siamo/" },
+  { label: "Galleria", href: "/galleria/" },
+  { label: "Contatti", href: "/contatti/" },
+];
+
+const whatsappHref = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(restaurantData.whatsappMessage)}`;
+---
+
+<nav
+  id="main-nav"
+  class="fixed top-0 left-0 right-0 z-40 transition-colors duration-300"
+  transition:persist
+>
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
+    <!-- Logo / Name -->
+    <a href="/" class="font-heading text-xl font-bold text-white md:text-2xl">
+      {restaurantData.name}
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="hidden items-center gap-8 md:flex">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              "relative text-[0.9375rem] font-semibold text-white/90 transition-colors hover:text-gold",
+              "after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-gold after:transition-all after:duration-300",
+              currentPath === link.href ? "text-gold after:w-full" : "after:w-0 hover:after:w-full",
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- CTA + Hamburger -->
+    <div class="flex items-center gap-4">
+      <a
+        href={whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden rounded-md bg-gold px-5 py-2 text-sm font-bold text-navy transition-all hover:bg-gold-light hover:scale-[1.02] md:inline-block"
+      >
+        Prenota
+      </a>
+
+      <!-- Hamburger button (mobile) -->
+      <button
+        id="hamburger-btn"
+        class="flex h-11 w-11 items-center justify-center rounded-md text-white md:hidden"
+        aria-label="Apri menu di navigazione"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg id="hamburger-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+        <svg id="close-icon" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu overlay -->
+  <div
+    id="mobile-menu"
+    class="hidden fixed inset-0 top-0 z-50 flex-col items-center justify-center gap-8 bg-navy/95 backdrop-blur-sm md:hidden"
+  >
+    <button
+      id="mobile-close-btn"
+      class="absolute top-5 right-5 flex h-11 w-11 items-center justify-center text-white"
+      aria-label="Chiudi menu"
+    >
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class:list={[
+          "font-heading text-2xl font-bold text-white transition-colors hover:text-gold",
+          currentPath === link.href && "text-gold",
+        ]}
+      >
+        {link.label}
+      </a>
+    ))}
+    <a
+      href={whatsappHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-4 rounded-md bg-gold px-8 py-3 text-lg font-bold text-navy transition-all hover:bg-gold-light"
+    >
+      Prenota
+    </a>
+  </div>
+</nav>
+
+<script>
+  // Navbar scroll opacity
+  const nav = document.getElementById("main-nav");
+  if (nav) {
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("bg-navy/95", window.scrollY > 50);
+      nav.classList.toggle("backdrop-blur-sm", window.scrollY > 50);
+      nav.classList.toggle("shadow-lg", window.scrollY > 50);
+    }, { passive: true });
+  }
+
+  // Hamburger toggle
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileCloseBtn = document.getElementById("mobile-close-btn");
+
+  function openMenu() {
+    mobileMenu?.classList.remove("hidden");
+    mobileMenu?.classList.add("flex");
+    hamburgerBtn?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.add("hidden");
+    mobileMenu?.classList.remove("flex");
+    hamburgerBtn?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  hamburgerBtn?.addEventListener("click", openMenu);
+  mobileCloseBtn?.addEventListener("click", closeMenu);
+
+  // Close on link click
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !mobileMenu?.classList.contains("hidden")) {
+      closeMenu();
+    }
+  });
+</script>
