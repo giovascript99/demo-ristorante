@@ -1,0 +1,53 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  ctaPrimary: { text: string; href: string };
+  ctaSecondary: { text: string; href: string };
+  backgroundImage?: string;
+}
+
+const { title, subtitle, ctaPrimary, ctaSecondary } = Astro.props;
+---
+
+<section class="relative flex min-h-svh items-center justify-center overflow-hidden" transition:name="hero">
+  <!-- Background placeholder -->
+  <div class="absolute inset-0 bg-navy-light">
+    <!-- PLACEHOLDER: Vista panoramica della costa di Tropea al tramonto, mare cristallino, scogliera con chiesa Santa Maria dell'Isola -->
+    <div class="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/50 to-navy/80"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-4xl px-4 text-center">
+    <h1 class="font-heading text-[2.5rem] font-bold leading-tight text-white md:text-7xl">
+      {title}
+    </h1>
+    <p class="mt-6 text-lg text-white/85 md:text-xl">
+      {subtitle}
+    </p>
+    <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+      <a
+        href={ctaPrimary.href}
+        class="rounded-md bg-gold px-8 py-3 text-base font-bold text-navy transition-all hover:bg-gold-light hover:scale-[1.02] hover:shadow-lg"
+      >
+        {ctaPrimary.text}
+      </a>
+      <a
+        href={ctaSecondary.href}
+        class="rounded-md border-2 border-white px-8 py-3 text-base font-bold text-white transition-all hover:bg-white hover:text-navy"
+      >
+        {ctaSecondary.text}
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll-down arrow -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+    <svg
+      class="h-8 w-8 text-white/60"
+      style="animation: bounce-down 2s ease-in-out infinite;"
+      fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+    </svg>
+  </div>
+</section>
