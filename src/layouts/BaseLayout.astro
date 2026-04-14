@@ -1,0 +1,36 @@
+---
+import BaseHead from "../components/layout/BaseHead.astro";
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+import WhatsAppButton from "../components/ui/WhatsAppButton.astro";
+import restaurantData from "../data/restaurant.json";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: string;
+}
+
+const { title, description, ogImage, ogType } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <BaseHead title={title} description={description} ogImage={ogImage} ogType={ogType} />
+  </head>
+  <body class="bg-sand text-text font-body min-h-screen flex flex-col">
+    <a href="#main-content" class="skip-link">Vai al contenuto</a>
+    <Navbar currentPath={currentPath} />
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppButton
+      phoneNumber={restaurantData.whatsapp}
+      message={restaurantData.whatsappMessage}
+    />
+  </body>
+</html>
