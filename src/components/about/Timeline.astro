@@ -1,0 +1,35 @@
+---
+interface Props {
+  events: Array<{ year: string; title: string; description: string }>;
+}
+
+const { events } = Astro.props;
+---
+
+<div class="relative">
+  <!-- Vertical line -->
+  <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gold/30 md:left-1/2 md:-translate-x-1/2"></div>
+
+  <div class="space-y-12">
+    {events.map((event, i) => (
+      <div class:list={[
+        "relative pl-12 md:pl-0 md:w-1/2",
+        i % 2 === 0 ? "md:pr-12 md:text-right" : "md:ml-auto md:pl-12",
+        i % 2 === 0 ? "animate-slide-right" : "animate-slide-left",
+      ]}>
+        <!-- Dot on timeline -->
+        <div class:list={[
+          "absolute top-1 left-2.5 h-3.5 w-3.5 rounded-full border-2 border-gold bg-sand",
+          "md:left-auto",
+          i % 2 === 0 ? "md:-right-[1.9375rem]" : "md:-left-[1.9375rem]",
+        ]}></div>
+
+        <span class="inline-block rounded-full bg-gold/10 px-3 py-1 text-sm font-bold text-gold mb-2">
+          {event.year}
+        </span>
+        <h3 class="font-heading text-lg font-bold text-navy">{event.title}</h3>
+        <p class="mt-1 text-sm text-text-light leading-relaxed">{event.description}</p>
+      </div>
+    ))}
+  </div>
+</div>
