@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionTitle from "../components/ui/SectionTitle.astro";
+import GalleryGrid from "../components/gallery/GalleryGrid.astro";
+import Lightbox from "../components/gallery/Lightbox.astro";
+import galleryData from "../data/gallery.json";
+---
+
+<BaseLayout
+  title="Galleria | Foto del Ristorante"
+  description="Scopri le foto della Taverna del Porto: i nostri piatti, la sala con vista mare, la cucina e l'atmosfera del ristorante a Tropea."
+>
+  <!-- Page header -->
+  <section class="pt-32 pb-16">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <SectionTitle
+        title="Galleria"
+        subtitle="Scopri i nostri piatti, il locale e l'atmosfera della Taverna del Porto"
+      />
+    </div>
+  </section>
+
+  <!-- Gallery grid -->
+  <section class="pb-20">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <GalleryGrid images={galleryData} />
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <Lightbox images={galleryData.map((img) => ({ alt: img.alt, description: img.description }))} />
+</BaseLayout>
