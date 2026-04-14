@@ -1,0 +1,116 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import "../../styles/global.css";
+import seoData from "../../data/seo.json";
+import restaurantData from "../../data/restaurant.json";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = seoData.defaultOgImage,
+  ogType = "website",
+  canonicalUrl = Astro.url.href,
+} = Astro.props;
+
+const formattedTitle = seoData.titleTemplate.replace("%s", title);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": restaurantData.name,
+  "description": restaurantData.description,
+  "url": seoData.siteUrl,
+  "telephone": restaurantData.phone,
+  "email": restaurantData.email,
+  "servesCuisine": restaurantData.cuisineType,
+  "priceRange": restaurantData.priceRange,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": restaurantData.address.street,
+    "addressLocality": restaurantData.address.city,
+    "addressRegion": restaurantData.address.province,
+    "postalCode": restaurantData.address.cap,
+    "addressCountry": "IT"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": restaurantData.coordinates.lat,
+    "longitude": restaurantData.coordinates.lng
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "12:00",
+      "closes": "14:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "19:00",
+      "closes": "23:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "12:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "19:00",
+      "closes": "23:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "12:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "19:00",
+      "closes": "22:30"
+    }
+  ]
+};
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<title>{formattedTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<meta property="og:title" content={formattedTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:locale" content={seoData.locale} />
+<meta property="og:site_name" content={seoData.siteName} />
+
+<!-- Google Fonts: Playfair Display 600,700 + Lato 400,700 -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<ViewTransitions />
