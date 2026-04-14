@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MenuCategory from "../components/menu/MenuCategory.astro";
+import SectionTitle from "../components/ui/SectionTitle.astro";
+import menuData from "../data/menu.json";
+import seoData from "../data/seo.json";
+
+// JSON-LD Menu schema
+const menuJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Menu - Taverna del Porto",
+  "url": `${seoData.siteUrl}/menu/`,
+  "hasMenuSection": menuData.categories.map((cat) => ({
+    "@type": "MenuSection",
+    "name": cat.name,
+    "hasMenuItem": cat.items.map((item) => ({
+      "@type": "MenuItem",
+      "name": item.name,
+      "description": item.description,
+      "offers": {
+        "@type": "Offer",
+        "price": item.price,
+        "priceCurrency": "EUR",
+      },
+    })),
+  })),
+};
+---
+
+<BaseLayout
+  title="Menu | Pesce Fresco a Tropea"
+  description="Scopri il nostro menu di pesce fresco: antipasti di mare, primi della tradizione calabrese, secondi alla griglia e dolci fatti in casa."
+>
+  <!-- JSON-LD Menu Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(menuJsonLd)} />
+
+  <!-- Page header -->
+  <section class="pt-32 pb-12 bg-sand">
+    <div class="mx-auto max-w-4xl px-4 md:px-8">
+      <SectionTitle
+        title="Il Nostro Menu"
+        subtitle="Pesce fresco del giorno, ricette della tradizione calabrese e ingredienti locali selezionati"
+      />
+    </div>
+  </section>
+
+  <!-- Category navigation tabs -->
+  <nav class="sticky top-16 z-30 bg-sand/95 backdrop-blur-sm border-b border-sand-dark">
+    <div class="mx-auto max-w-4xl px-4 md:px-8">
+      <div class="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
+        {menuData.categories.map((cat) => (
+          <a
+            href={`#${cat.name.toLowerCase().replace(/\s+/g, "-")}`}
+            class="shrink-0 rounded-full px-4 py-2 text-sm font-semibold text-text-light transition-colors hover:bg-gold/10 hover:text-navy"
+          >
+            {cat.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu categories -->
+  <section class="py-16 bg-sand" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(212,168,83,0.03) 39px, rgba(212,168,83,0.03) 40px);">
+    <div class="mx-auto max-w-4xl px-4 md:px-8 space-y-16">
+      {menuData.categories.map((cat) => (
+        <MenuCategory name={cat.name} items={cat.items} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Footer note -->
+  <section class="pb-20 bg-sand">
+    <div class="mx-auto max-w-4xl px-4 md:px-8 text-center">
+      <p class="text-sm text-text-light italic">
+        Il menu varia in base alla disponibilita del pescato del giorno. Prezzi IVA inclusa.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

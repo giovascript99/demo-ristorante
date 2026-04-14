@@ -1,0 +1,21 @@
+---
+import MenuItem from "./MenuItem.astro";
+
+interface Props {
+  name: string;
+  items: Array<{ name: string; description: string; price: number; tags?: string[] }>;
+}
+
+const { name, items } = Astro.props;
+const slug = name.toLowerCase().replace(/\s+/g, "-");
+---
+
+<section id={slug} class="scroll-mt-24 animate-fade-up">
+  <h2 class="font-heading text-2xl font-bold text-navy mb-2 md:text-3xl">{name}</h2>
+  <div class="h-0.5 w-10 bg-gold mb-6"></div>
+  <div>
+    {items.map((item) => (
+      <MenuItem name={item.name} description={item.description} price={item.price} tags={item.tags} />
+    ))}
+  </div>
+</section>
