@@ -76,10 +76,11 @@ const alternateUrl = `https://taverna-del-porto.vercel.app${alternatePath}`;
           revealElements.forEach((el) => observer.observe(el));
         }
 
-        // Force autoplay on mobile
+        // Autoplay videos with poster fallback
         document.querySelectorAll<HTMLVideoElement>(".autoplay-video").forEach((v) => {
           v.muted = true;
           v.controls = false;
+          v.addEventListener("playing", () => { v.classList.remove("opacity-0"); });
           v.play().catch(() => {});
           v.addEventListener("canplay", () => { if (v.paused) v.play().catch(() => {}); }, { once: true });
         });

@@ -15,8 +15,13 @@ const { title, subtitle, ctaPrimary, ctaSecondary, backgroundImage, backgroundVi
   <!-- Background: video > image > placeholder -->
   <div class="absolute inset-0 bg-navy-light">
     {backgroundVideo ? (
+      <img
+        src={backgroundVideo.replace('.mp4', '-poster.jpg')}
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover"
+      />
       <video
-        class="absolute inset-0 h-full w-full object-cover autoplay-video"
+        class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 autoplay-video"
         src={backgroundVideo}
         autoplay
         muted
