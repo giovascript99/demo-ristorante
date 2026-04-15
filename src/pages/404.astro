@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Pagina non trovata | 404"
+  description="La pagina che cerchi non esiste. Torna alla homepage o scopri il nostro menu."
+>
+  <section class="flex min-h-[70vh] items-center justify-center py-20">
+    <div class="mx-auto max-w-lg px-4 text-center">
+      <p class="font-heading text-8xl font-bold text-gold/30 md:text-9xl">404</p>
+      <h1 class="mt-4 font-heading text-2xl font-bold text-navy md:text-3xl">
+        Questo piatto non è nel menu!
+      </h1>
+      <p class="mt-4 text-text-light leading-relaxed">
+        La pagina che stai cercando non esiste o è stata spostata. Ma non preoccuparti, abbiamo tanti altri piatti da offrirti.
+      </p>
+      <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <a
+          href="/"
+          class="rounded-md bg-gold px-8 py-3 font-bold text-navy transition-all hover:bg-gold-light hover:scale-[1.02]"
+        >
+          Torna alla Home
+        </a>
+        <a
+          href="/menu/"
+          class="rounded-md border-2 border-navy px-8 py-3 font-bold text-navy transition-all hover:bg-navy hover:text-white"
+        >
+          Vedi il Menu
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

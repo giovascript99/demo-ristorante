@@ -9,10 +9,10 @@ interface Props {
 const { title, subtitle, align = "center", light = false } = Astro.props;
 ---
 
-<div class:list={["mb-12", align === "center" ? "text-center" : "text-left"]}>
+<div class:list={["mb-8 md:mb-12", align === "center" ? "text-center" : "text-left"]}>
   <h2
     class:list={[
-      "font-heading text-2xl md:text-[2.75rem] font-bold leading-tight",
+      "font-heading text-2xl sm:text-3xl md:text-[2.75rem] font-bold leading-tight",
       light ? "text-white" : "text-navy",
     ]}
   >

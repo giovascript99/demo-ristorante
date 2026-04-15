@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionTitle from "../../components/ui/SectionTitle.astro";
+import GalleryGrid from "../../components/gallery/GalleryGrid.astro";
+import Lightbox from "../../components/gallery/Lightbox.astro";
+import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
+import galleryData from "../../data/en/gallery.json";
+
+const lang = "en" as const;
+---
+
+<BaseLayout
+  title="Gallery | Restaurant Photos"
+  description="Explore photos of Taverna del Porto: our dishes, the sea-view dining room, the kitchen and the atmosphere of our restaurant in Tropea."
+  lang={lang}
+>
+  <section class="pt-24 md:pt-32 pb-16">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <div class="mb-6">
+        <Breadcrumbs items={[{ label: "Home", href: "/en/" }, { label: "Gallery" }]} />
+      </div>
+      <div data-reveal="fade-up">
+        <SectionTitle title="Gallery" subtitle="Discover our dishes, the venue and the atmosphere of Taverna del Porto" />
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-20 gallery-grid-wrap">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <GalleryGrid images={galleryData} />
+    </div>
+  </section>
+
+  <Lightbox images={galleryData.map((img) => ({ src: img.src, alt: img.alt, description: img.description }))} />
+</BaseLayout>
+
+<style is:global>
+  .gallery-grid-wrap,
+  .gallery-grid-wrap *,
+  #lightbox-dialog,
+  #lightbox-dialog * {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-user-drag: none !important;
+    -webkit-touch-callout: none !important;
+  }
+  .gallery-grid-wrap ::selection,
+  #lightbox-dialog ::selection {
+    background: transparent !important;
+    color: inherit !important;
+  }
+  .gallery-grid-wrap img {
+    pointer-events: none;
+  }
+</style>

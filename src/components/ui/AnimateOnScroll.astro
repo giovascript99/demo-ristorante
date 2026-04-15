@@ -1,16 +1,14 @@
 ---
 interface Props {
   animation?: "fade-up" | "fade-in" | "slide-left" | "slide-right" | "clip-reveal";
-  delay?: number;
   class?: string;
 }
 
-const { animation = "fade-up", delay = 0, class: className = "" } = Astro.props;
+const { animation = "fade-up", class: className = "" } = Astro.props;
 
 const animationClass = `animate-${animation}`;
-const delayClass = delay > 0 ? `animate-delay-${delay}` : "";
 ---
 
-<div class:list={[animationClass, delayClass, className]}>
+<div class:list={[animationClass, className]}>
   <slot />
 </div>

@@ -1,0 +1,109 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionTitle from "../../components/ui/SectionTitle.astro";
+import ValueCard from "../../components/about/ValueCard.astro";
+import Timeline from "../../components/about/Timeline.astro";
+import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
+import restaurantData from "../../data/en/restaurant.json";
+
+const lang = "en" as const;
+
+const timelineEvents = [
+  { year: "1985", title: "The Beginning", description: "Grandfather Giuseppe Ferraro opens Taverna del Porto with just 8 tables and a passion for the sea." },
+  { year: "1998", title: "First Star", description: "The Taverna receives its first star in the regional guide of Calabrian restaurants." },
+  { year: "2010", title: "The Sea Terrace", description: "Major renovation: the panoramic terrace is born with views of Stromboli and the Aeolian Islands." },
+  { year: "2023", title: "Third Generation", description: "Chef Marco Ferraro takes the helm of the kitchen, bringing innovation while respecting tradition." },
+];
+
+const values = [
+  {
+    icon: `<svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>`,
+    title: "Local Ingredients",
+    text: "Every morning we select the finest catch directly from Tropea's fishermen. Vegetables and olive oil come from Calabrian producers we've known for generations.",
+  },
+  {
+    icon: `<svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>`,
+    title: "Tradition",
+    text: "Grandmother Maria's recipes are the heart of our menu. Every dish tells a family story, passed down with love through three generations.",
+  },
+  {
+    icon: `<svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>`,
+    title: "Sustainability",
+    text: "We respect the sea that feeds us. Sustainable fishing, waste reduction and eco-friendly packaging are our daily commitments.",
+  },
+];
+---
+
+<BaseLayout
+  title="About Us | Our Story"
+  description="Since 1985, the Ferraro family has brought the flavours of the Tropea sea to the table. Discover our story, values and passion for Calabrian cuisine."
+  lang={lang}
+>
+  <section class="pt-24 md:pt-32 pb-16">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <div class="mb-6">
+        <Breadcrumbs items={[{ label: "Home", href: "/en/" }, { label: "About Us" }]} />
+      </div>
+      <div data-reveal="fade-up">
+        <SectionTitle title="Our Story" subtitle="A family, the sea and a passion for Calabrian cuisine since 1985" />
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-20">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <div class="grid gap-12 md:grid-cols-2 items-center">
+        <div data-reveal="fade-right" class="space-y-6 text-text-light leading-relaxed">
+          <p>It all began in 1985, when Grandfather Giuseppe Ferraro — a lifelong fisherman — decided that Tropea's freshest fish deserved a worthy table. With eight tables, a tiny kitchen and a boundless love for the sea, <strong class="text-navy font-semibold">Taverna del Porto</strong> was born.</p>
+          <p>Since then, three generations of the Ferraro family have carried on the same promise: <em>bringing the sea to the table, with respect and passion</em>. Every morning, before dawn, our fish is selected directly from the local fishermen's boats — the same ones who supplied Grandfather Giuseppe forty years ago.</p>
+          <p>Our cuisine is a dialogue between tradition and creativity. Grandmother Maria's recipes — her spaghetti allo scoglio, her grilled octopus, the tiramisù that brought tears of joy — live alongside the creations of Chef Marco, who has brought a breath of freshness without ever betraying the roots.</p>
+          <p>Today, Taverna del Porto is a landmark for those seeking <strong class="text-navy font-semibold">authentic Calabrian seafood cuisine</strong>. The terrace overlooking the Tyrrhenian, where the gaze wanders between the Aeolian Islands and Stromboli, is our favourite stage for giving you unforgettable evenings.</p>
+        </div>
+        <div data-reveal="fade-left">
+          <img src="/images/chi-siamo/chi-siamo-famiglia.jpg" alt="The Ferraro family in the kitchen of Taverna del Porto" width="600" height="750" loading="lazy" class="rounded-xl border-2 border-gold/20 w-full object-cover" style="aspect-ratio: 4/5;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-sand-dark">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <div class="grid gap-12 md:grid-cols-2 items-center">
+        <div data-reveal="zoom-in">
+          <img src="/images/chi-siamo/chi-siamo-chef.jpg" alt={`${restaurantData.chef.name} - ${restaurantData.chef.title}`} width="600" height="800" loading="lazy" class="rounded-xl w-full object-cover" style="aspect-ratio: 3/4;" />
+        </div>
+        <div data-reveal="fade-up">
+          <h2 class="font-heading text-3xl font-bold text-navy md:text-4xl">{restaurantData.chef.name}</h2>
+          <p class="mt-2 text-gold font-semibold">{restaurantData.chef.title}</p>
+          <div class="mt-1 h-0.5 w-10 bg-gold"></div>
+          <p class="mt-6 text-text-light leading-relaxed">{restaurantData.chef.bio}</p>
+          <p class="mt-4 text-text-light leading-relaxed">After years of training between Naples, Rome and the French Riviera, Marco returned to Tropea with a clear mission: innovate without forgetting. His menu changes with the seasons and with the sea, because — as Grandfather Giuseppe used to say — "the fish decides what you cook today".</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <div data-reveal="fade-up">
+        <SectionTitle title="Our Values" subtitle="The principles that guide our work every day" />
+      </div>
+      <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3" data-reveal-stagger>
+        {values.map((value) => (
+          <div data-reveal="fade-up"><ValueCard icon={value.icon} title={value.title} text={value.text} /></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-sand-dark">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <div data-reveal="fade-up">
+        <SectionTitle title="Our Journey" subtitle="Forty years of history, passion and flavour" />
+      </div>
+      <div class="mt-12" data-reveal="fade-up">
+        <Timeline events={timelineEvents} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

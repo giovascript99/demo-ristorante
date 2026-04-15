@@ -1,0 +1,85 @@
+{
+  "allergenLabels": {
+    "glutine": "Gluten",
+    "crostacei": "Crustaceans",
+    "uova": "Eggs",
+    "pesce": "Fish",
+    "arachidi": "Peanuts",
+    "soia": "Soy",
+    "latte": "Milk",
+    "frutta-a-guscio": "Tree Nuts",
+    "sedano": "Celery",
+    "senape": "Mustard",
+    "sesamo": "Sesame Seeds",
+    "solfiti": "Sulphites",
+    "lupini": "Lupin",
+    "molluschi": "Molluscs"
+  },
+  "dailySpecial": {
+    "name": "Sea Urchin Spaghetti",
+    "description": "Bronze-drawn spaghetti with fresh sea urchin, garlic, parsley and a hint of Calabrian chilli",
+    "price": 24,
+    "badge": "Catch of the Day"
+  },
+  "categories": [
+    {
+      "name": "Starters",
+      "items": [
+        { "name": "Amberjack Carpaccio", "description": "Raw amberjack with Calabrian citrus, extra virgin olive oil and Tropea salt", "price": 16, "tags": ["catch of the day", "raw", "gluten-free"], "allergens": ["pesce", "solfiti"], "featured": true },
+        { "name": "Grilled Octopus", "description": "Chargrilled octopus on potato cream with crushed pepper powder", "price": 18, "tags": ["gluten-free"], "allergens": ["molluschi"] },
+        { "name": "Raw Seafood Selection", "description": "Daily selection of raw seafood with oysters, prawns and sea truffles", "price": 22, "tags": ["catch of the day", "raw", "gluten-free"], "allergens": ["pesce", "crostacei", "molluschi"] },
+        { "name": "Nduja & Stracciatella Bruschetta", "description": "Country bread with Spilinga nduja and Apulian stracciatella", "price": 12, "tags": ["spicy"], "allergens": ["glutine", "latte"] },
+        { "name": "Marinated Anchovies", "description": "Fresh anchovies marinated in lemon with Tropea red onion", "price": 14, "tags": ["raw", "gluten-free"], "allergens": ["pesce", "solfiti"] }
+      ]
+    },
+    {
+      "name": "Pasta",
+      "items": [
+        { "name": "Seafood Spaghetti", "description": "Spaghetti with mussels, clams, prawns and fresh cherry tomatoes", "price": 18, "allergens": ["glutine", "crostacei", "molluschi"], "featured": true },
+        { "name": "Swordfish Ragù Paccheri", "description": "Gragnano paccheri with swordfish ragù, olives and capers", "price": 20, "allergens": ["glutine", "pesce", "solfiti"] },
+        { "name": "Seafood Risotto", "description": "Carnaroli rice with mixed seafood and saffron", "price": 22, "tags": ["gluten-free"], "allergens": ["crostacei", "molluschi", "latte"] },
+        { "name": "Fileja alla Tropeana", "description": "Fresh Calabrian pasta with Tropea red onion, tuna and cherry tomatoes", "price": 16, "allergens": ["glutine", "pesce"] },
+        { "name": "Lobster Linguine", "description": "Linguine with half lobster, Pachino tomato and fresh basil", "price": 28, "tags": ["special"], "allergens": ["glutine", "crostacei"] }
+      ]
+    },
+    {
+      "name": "Mains",
+      "items": [
+        { "name": "Mixed Grilled Seafood", "description": "Selection of fresh grilled fish with seasonal vegetables", "price": 28, "tags": ["catch of the day", "gluten-free"], "allergens": ["pesce", "crostacei", "molluschi"], "featured": true },
+        { "name": "Grilled Tuna Steak", "description": "Seared red tuna steak with red onion reduction", "price": 24, "tags": ["gluten-free"], "allergens": ["pesce"] },
+        { "name": "Mixed Fried Seafood", "description": "Crispy fried mixed fish and calamari with lemon and citrus mayonnaise", "price": 20, "allergens": ["glutine", "pesce", "uova", "molluschi"] },
+        { "name": "Baked Sea Bream", "description": "Whole baked sea bream with potatoes, Taggiasca olives and cherry tomatoes", "price": 22, "tags": ["gluten-free"], "allergens": ["pesce"] },
+        { "name": "Calabrian-Style Salt Cod", "description": "Salt cod stewed with peppers, potatoes and black olives", "price": 18, "tags": ["traditional", "gluten-free"], "allergens": ["pesce"] }
+      ]
+    },
+    {
+      "name": "Sides",
+      "items": [
+        { "name": "Warm Seafood Salad", "description": "Octopus, prawns and calamari with celery, olives and lemon", "price": 12, "tags": ["gluten-free"], "allergens": ["molluschi", "crostacei", "sedano"] },
+        { "name": "Grilled Vegetables", "description": "Courgettes, aubergines and peppers grilled with extra virgin olive oil", "price": 8, "tags": ["vegetarian", "gluten-free"], "allergens": [] },
+        { "name": "Roast Potatoes", "description": "Oven-roasted potatoes with rosemary and garlic", "price": 6, "tags": ["vegetarian", "gluten-free"], "allergens": [] },
+        { "name": "Tropea Salad", "description": "Red onion, tomatoes, olives and Calabrian oregano", "price": 7, "tags": ["vegetarian", "gluten-free"], "allergens": ["solfiti"] }
+      ]
+    },
+    {
+      "name": "Desserts",
+      "items": [
+        { "name": "Homemade Tiramisù", "description": "Grandmother's recipe with mascarpone and espresso", "price": 8, "allergens": ["uova", "latte", "glutine"] },
+        { "name": "Pizzo Tartufo", "description": "The classic chocolate and hazelnut ice cream from Pizzo Calabro", "price": 7, "tags": ["gluten-free"], "allergens": ["latte", "frutta-a-guscio"] },
+        { "name": "Bergamot Semifreddo", "description": "Creamy semifreddo made with bergamot from Reggio Calabria", "price": 9, "tags": ["gluten-free"], "allergens": ["uova", "latte"] },
+        { "name": "Seasonal Fruit", "description": "Selection of fresh local seasonal fruit", "price": 6, "tags": ["vegetarian", "gluten-free"], "allergens": [] }
+      ]
+    },
+    {
+      "name": "Drinks",
+      "items": [
+        { "name": "Mineral Water", "description": "Still or sparkling (75cl)", "price": 3, "tags": ["gluten-free"], "allergens": [] },
+        { "name": "House Wine (Glass)", "description": "White or red, Cirò DOC", "price": 5, "tags": ["gluten-free"], "allergens": ["solfiti"] },
+        { "name": "House Wine (Bottle)", "description": "White or red, Cirò DOC (75cl)", "price": 18, "tags": ["gluten-free"], "allergens": ["solfiti"] },
+        { "name": "Craft Beer", "description": "Local Calabrian craft beer (33cl)", "price": 5, "allergens": ["glutine"] },
+        { "name": "Homemade Limoncello", "description": "Handmade with Calabrian lemons", "price": 4, "tags": ["gluten-free"], "allergens": ["solfiti"] },
+        { "name": "Espresso", "description": "Neapolitan blend", "price": 1.5, "tags": ["gluten-free"], "allergens": [] }
+      ]
+    }
+  ]
+}

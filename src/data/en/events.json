@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Calabrian Wine Tasting Evening",
+    "date": "2026-05-10",
+    "time": "20:00",
+    "description": "A journey through the finest wines of Calabria paired with dishes from our chef. Cirò DOC, Greco di Bianco and more surprises. Limited seats.",
+    "price": 55,
+    "tag": "Tasting"
+  },
+  {
+    "title": "Blue Fish Festival",
+    "date": "2026-05-24",
+    "time": "19:30",
+    "description": "Special menu dedicated to Tyrrhenian blue fish: anchovies, sardines, mackerel and amberjack prepared in ten variations from the Calabrian tradition.",
+    "price": 45,
+    "tag": "Special Menu"
+  },
+  {
+    "title": "Dinner Under the Stars",
+    "date": "2026-06-15",
+    "time": "20:30",
+    "description": "The terrace lights up with candles for a romantic evening with a surprise menu by the chef, live music and views of the Aeolian Islands.",
+    "price": 75,
+    "tag": "Special Event"
+  },
+  {
+    "title": "Cooking Class: Fresh Calabrian Pasta",
+    "date": "2026-06-28",
+    "time": "16:00",
+    "description": "Learn to make fileja, scilatelle and other traditional Calabrian pasta with Chef Marco. Includes final tasting with wine.",
+    "price": 60,
+    "tag": "Cooking Class"
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "name": "Taverna del Porto",
+  "tagline": "Flavours of the sea from the heart of Calabria",
+  "description": "Seafood restaurant with sea view in Tropea, Calabria. Traditional cuisine since 1985.",
+  "address": {
+    "street": "Via Marina dell'Isola, 12",
+    "city": "Tropea",
+    "province": "VV",
+    "cap": "89861",
+    "country": "Italy"
+  },
+  "phone": "+39 0963 61234",
+  "email": "info@tavernadelporto.it",
+  "whatsapp": "+39096361234",
+  "whatsappMessage": "Hi! I'd like to book a table at Taverna del Porto.",
+  "social": {
+    "facebook": "#",
+    "instagram": "#",
+    "tripadvisor": "#"
+  },
+  "reviews": {
+    "google": { "rating": 4.7, "count": 328, "url": "#" },
+    "tripadvisor": { "rating": 4.5, "count": 215, "url": "#" }
+  },
+  "hours": [
+    { "days": "Monday", "lunch": "Closed", "dinner": "Closed" },
+    { "days": "Tuesday – Friday", "lunch": "12:00 – 14:30", "dinner": "19:00 – 23:00" },
+    { "days": "Saturday", "lunch": "12:00 – 15:00", "dinner": "19:00 – 23:30" },
+    { "days": "Sunday", "lunch": "12:00 – 15:00", "dinner": "19:00 – 22:30" }
+  ],
+  "practicalInfo": {
+    "payments": ["Cash", "Visa", "Mastercard", "Amex", "Satispay"],
+    "parking": "Public parking 100m away (Via Marina). In summer we recommend arriving early.",
+    "accessibility": "Wheelchair accessible entrance. Accessible bathroom. High chairs available.",
+    "dressCode": "Smart casual. No swimwear.",
+    "coverCharge": "Cover charge: €2.50 per person (includes bread, breadsticks and water)."
+  },
+  "coordinates": { "lat": 38.6767, "lng": 15.8987 },
+  "vatNumber": "IT01234567890",
+  "priceRange": "$$",
+  "cuisineType": ["Seafood", "Calabrian", "Mediterranean"],
+  "foundedYear": 1985,
+  "chef": {
+    "name": "Marco Ferraro",
+    "title": "Chef & Owner",
+    "bio": "Third generation of fishermen, first generation of chefs. Marco brought his family's tradition into the kitchen, blending his grandmother's recipes with the contemporary flavours of the Mediterranean."
+  }
+}

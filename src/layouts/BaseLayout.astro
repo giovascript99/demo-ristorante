@@ -3,7 +3,9 @@ import BaseHead from "../components/layout/BaseHead.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
 import WhatsAppButton from "../components/ui/WhatsAppButton.astro";
-import restaurantData from "../data/restaurant.json";
+import restaurantDataIt from "../data/restaurant.json";
+import restaurantDataEn from "../data/en/restaurant.json";
+import { t, type Lang } from "../i18n/ui";
 
 interface Props {
   title: string;
@@ -11,27 +13,104 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   transparentNav?: boolean;
+  lang?: Lang;
 }
 
-const { title, description, ogImage, ogType, transparentNav = false } = Astro.props;
+const { title, description, ogImage, ogType, transparentNav = false, lang = "it" } = Astro.props;
 const currentPath = Astro.url.pathname;
+const restaurantData = lang === "en" ? restaurantDataEn : restaurantDataIt;
+
+const pathMap: Record<string, string> = {
+  "/": "/en/",
+  "/menu/": "/en/menu/",
+  "/chi-siamo/": "/en/about-us/",
+  "/galleria/": "/en/gallery/",
+  "/eventi/": "/en/events/",
+  "/contatti/": "/en/contact/",
+  "/en/": "/",
+  "/en/menu/": "/menu/",
+  "/en/about-us/": "/chi-siamo/",
+  "/en/gallery/": "/galleria/",
+  "/en/events/": "/eventi/",
+  "/en/contact/": "/contatti/",
+};
+const alternatePath = pathMap[currentPath] || currentPath;
+const alternateUrl = `https://taverna-del-porto.vercel.app${alternatePath}`;
 ---
 
 <!doctype html>
-<html lang="it">
+<html lang={lang}>
   <head>
     <BaseHead title={title} description={description} ogImage={ogImage} ogType={ogType} />
+    <link rel="alternate" hreflang={lang === "it" ? "en" : "it"} href={alternateUrl} />
+    <link rel="alternate" hreflang={lang} href={`https://taverna-del-porto.vercel.app${currentPath}`} />
   </head>
   <body class="bg-sand text-text font-body min-h-screen flex flex-col">
-    <a href="#main-content" class="skip-link">Vai al contenuto</a>
-    <Navbar currentPath={currentPath} transparent={transparentNav} />
+    <a href="#main-content" class="skip-link">{t(lang, "common.skipLink")}</a>
+    <Navbar currentPath={currentPath} transparent={transparentNav} lang={lang} />
     <main id="main-content" class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
     <WhatsAppButton
       phoneNumber={restaurantData.whatsapp}
       message={restaurantData.whatsappMessage}
+      lang={lang}
     />
+
+    <!-- Global scroll reveal + parallax -->
+    <script>
+      document.addEventListener("astro:page-load", () => {
+        // Scroll reveal via IntersectionObserver
+        const revealElements = document.querySelectorAll<HTMLElement>("[data-reveal]");
+        if (revealElements.length > 0) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+          revealElements.forEach((el) => observer.observe(el));
+        }
+
+        // Force autoplay on mobile
+        document.querySelectorAll<HTMLVideoElement>(".autoplay-video").forEach((v) => {
+          v.muted = true;
+          v.controls = false;
+          v.play().catch(() => {});
+          v.addEventListener("canplay", () => { if (v.paused) v.play().catch(() => {}); }, { once: true });
+        });
+        // Fallback: retry on first user interaction
+        function onInteract() {
+          document.querySelectorAll<HTMLVideoElement>(".autoplay-video").forEach((v) => {
+            if (v.paused) { v.muted = true; v.play().catch(() => {}); }
+          });
+        }
+        document.addEventListener("touchstart", onInteract, { once: true, passive: true });
+        document.addEventListener("scroll", onInteract, { once: true, passive: true });
+
+        // Parallax effect
+        const parallaxBgs = document.querySelectorAll<HTMLElement>(".parallax-bg");
+        if (parallaxBgs.length > 0) {
+          function updateParallax() {
+            parallaxBgs.forEach((bg) => {
+              const section = bg.parentElement;
+              if (!section) return;
+              const rect = section.getBoundingClientRect();
+              const vh = window.innerHeight;
+              if (rect.bottom < 0 || rect.top > vh) return;
+              const progress = (vh - rect.top) / (vh + rect.height);
+              const offset = (progress - 0.5) * 60;
+              bg.style.transform = `translate3d(0, ${offset}px, 0)`;
+            });
+          }
+          window.addEventListener("scroll", updateParallax, { passive: true });
+          updateParallax();
+        }
+      });
+    </script>
   </body>
 </html>

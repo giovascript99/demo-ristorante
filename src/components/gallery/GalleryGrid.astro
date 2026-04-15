@@ -1,6 +1,4 @@
 ---
-import PlaceholderImage from "../ui/PlaceholderImage.astro";
-
 interface Props {
   images: Array<{ src: string; alt: string; category: string; width: number; height: number; description: string }>;
 }
@@ -12,22 +10,24 @@ const { images } = Astro.props;
   {images.map((img, i) => (
     <button
       type="button"
-      class:list={[
-        "group relative overflow-hidden rounded-lg cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-gold",
-        `animate-fade-up animate-delay-${((i % 3) + 1) * 100}`,
-      ]}
+      class="group relative overflow-hidden rounded-lg cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-gold"
+      data-reveal="fade-up"
       data-gallery-index={i}
       aria-label={`Apri foto: ${img.alt}`}
     >
-      <PlaceholderImage
+      <img
+        src={img.src}
         alt={img.alt}
-        description={img.description}
-        aspectRatio={`${img.width}/${img.height}`}
-        class="w-full transition-transform duration-300 group-hover:scale-[1.03]"
+        width={img.width}
+        height={img.height}
+        loading={i < 3 ? "eager" : "lazy"}
+        draggable="false"
+        class="w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] pointer-events-none"
+        style={`aspect-ratio: ${img.width}/${img.height};`}
       />
-      <!-- Hover overlay -->
+      <!-- Overlay with tap/hover affordance -->
       <div class="absolute inset-0 flex items-center justify-center bg-navy/0 transition-colors duration-300 group-hover:bg-navy/30">
-        <svg class="h-8 w-8 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg class="h-8 w-8 text-white opacity-60 md:opacity-0 transition-opacity duration-300 group-hover:opacity-100 drop-shadow-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
         </svg>
       </div>

@@ -4,9 +4,11 @@ interface Props {
   description: string;
   price: number;
   tags?: string[];
+  allergens?: string[];
+  allergenLabels?: Record<string, string>;
 }
 
-const { name, description, price, tags = [] } = Astro.props;
+const { name, description, price, tags = [], allergens = [], allergenLabels: allergenLabelsProp } = Astro.props;
 
 const tagColors: Record<string, string> = {
   "pesce del giorno": "bg-navy/10 text-navy",
@@ -14,19 +16,48 @@ const tagColors: Record<string, string> = {
   "speciale": "bg-gold/10 text-gold",
   "tradizione": "bg-navy/10 text-navy",
   "vegetariano": "bg-green-100 text-green-800",
+  "senza-glutine": "bg-amber-50 text-amber-800",
+  "crudo": "bg-sky-50 text-sky-800",
 };
+
+// Dietary icons shown inline next to the dish name
+const dietaryIcons: Record<string, { icon: string; label: string }> = {
+  "senza-glutine": { icon: "🌾", label: "Senza glutine" },
+  "vegetariano": { icon: "🌱", label: "Vegetariano" },
+  "crudo": { icon: "🐟", label: "Crudo" },
+};
+const activeDietaryTags = tags.filter((t) => t in dietaryIcons);
+
+// Display-friendly tags (exclude dietary tags from visual badges)
+const displayTags = tags.filter((t) => !(t in dietaryIcons));
+
+const defaultAllergenLabels: Record<string, string> = { glutine: "Glutine", crostacei: "Crostacei", uova: "Uova", pesce: "Pesce", arachidi: "Arachidi", soia: "Soia", latte: "Latte", "frutta-a-guscio": "Frutta a guscio", sedano: "Sedano", senape: "Senape", sesamo: "Semi di sesamo", solfiti: "Solfiti", lupini: "Lupini", molluschi: "Molluschi" };
+const allergenLabels: Record<string, string> = allergenLabelsProp || defaultAllergenLabels;
 ---
 
-<div class="group py-4 border-b border-sand-dark last:border-0">
+<div
+  class="group py-4 border-b border-sand-dark last:border-0"
+  data-tags={tags.join(",")}
+  data-allergens={allergens.join(",")}
+>
   <div class="flex items-baseline gap-2">
-    <h3 class="font-heading text-lg font-semibold text-navy md:text-xl shrink-0">{name}</h3>
-    <span class="flex-1 border-b border-dotted border-text-light/30 translate-y-[-4px]"></span>
+    <h3 class="font-heading text-lg font-semibold text-navy md:text-xl">
+      {name}
+      {activeDietaryTags.length > 0 && (
+        <span class="ml-1.5 inline-flex gap-1 align-baseline text-sm">
+          {activeDietaryTags.map((t) => (
+            <span title={dietaryIcons[t].label} aria-label={dietaryIcons[t].label}>{dietaryIcons[t].icon}</span>
+          ))}
+        </span>
+      )}
+    </h3>
+    <span class="hidden min-w-6 flex-1 border-b border-dotted border-text-light/30 translate-y-[-4px] sm:block"></span>
     <span class="font-body text-base font-bold text-gold shrink-0 md:text-lg">&euro;{price.toFixed(2)}</span>
   </div>
   <p class="mt-1 text-sm text-text-light leading-relaxed">{description}</p>
-  {tags.length > 0 && (
-    <div class="mt-2 flex flex-wrap gap-2">
-      {tags.map((tag) => (
+  {(displayTags.length > 0 || allergens.length > 0) && (
+    <div class="mt-2 flex flex-wrap items-center gap-2">
+      {displayTags.map((tag) => (
         <span class:list={[
           "inline-block rounded-full px-3 py-0.5 text-xs font-semibold capitalize",
           tagColors[tag] || "bg-sand-dark text-text-light",
@@ -34,6 +65,14 @@ const tagColors: Record<string, string> = {
           {tag}
         </span>
       ))}
+      {allergens.length > 0 && (
+        <span class="inline-flex items-center gap-1 text-xs text-text-light" title={allergens.map((a) => allergenLabels[a] || a).join(", ")}>
+          <svg class="h-3.5 w-3.5 text-text-light/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+          </svg>
+          {allergens.map((a) => allergenLabels[a] || a).join(", ")}
+        </span>
+      )}
     </div>
   )}
 </div>

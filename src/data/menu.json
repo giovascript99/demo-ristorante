@@ -1,62 +1,84 @@
 {
+  "allergenLabels": {
+    "glutine": "Glutine",
+    "crostacei": "Crostacei",
+    "uova": "Uova",
+    "pesce": "Pesce",
+    "arachidi": "Arachidi",
+    "soia": "Soia",
+    "latte": "Latte",
+    "frutta-a-guscio": "Frutta a guscio",
+    "sedano": "Sedano",
+    "senape": "Senape",
+    "sesamo": "Semi di sesamo",
+    "solfiti": "Solfiti",
+    "lupini": "Lupini",
+    "molluschi": "Molluschi"
+  },
+  "dailySpecial": {
+    "name": "Spaghetti ai Ricci di Mare",
+    "description": "Spaghetti trafilati al bronzo con ricci di mare freschi, aglio, prezzemolo e una nota di peperoncino calabrese",
+    "price": 24,
+    "badge": "Pescato del Giorno"
+  },
   "categories": [
     {
       "name": "Antipasti",
       "items": [
-        { "name": "Carpaccio di Ricciola", "description": "Ricciola cruda con agrumi di Calabria, olio EVO e sale di Tropea", "price": 16, "tags": ["pesce del giorno"], "featured": true },
-        { "name": "Polpo alla Griglia", "description": "Polpo verace grigliato su crema di patate e polvere di peperone crusco", "price": 18 },
-        { "name": "Crudo di Mare", "description": "Selezione di crudi del giorno con ostriche, gamberi e tartufi di mare", "price": 22, "tags": ["pesce del giorno"] },
-        { "name": "Bruschetta Nduja e Stracciatella", "description": "Pane casereccio con nduja di Spilinga e stracciatella pugliese", "price": 12, "tags": ["piccante"] },
-        { "name": "Alici di Cetara Marinate", "description": "Alici fresche marinate al limone con cipolla rossa di Tropea", "price": 14 }
+        { "name": "Carpaccio di Ricciola", "description": "Ricciola cruda con agrumi di Calabria, olio EVO e sale di Tropea", "price": 16, "tags": ["pesce del giorno", "crudo", "senza-glutine"], "allergens": ["pesce", "solfiti"], "featured": true },
+        { "name": "Polpo alla Griglia", "description": "Polpo verace grigliato su crema di patate e polvere di peperone crusco", "price": 18, "tags": ["senza-glutine"], "allergens": ["molluschi"] },
+        { "name": "Crudo di Mare", "description": "Selezione di crudi del giorno con ostriche, gamberi e tartufi di mare", "price": 22, "tags": ["pesce del giorno", "crudo", "senza-glutine"], "allergens": ["pesce", "crostacei", "molluschi"] },
+        { "name": "Bruschetta Nduja e Stracciatella", "description": "Pane casereccio con nduja di Spilinga e stracciatella pugliese", "price": 12, "tags": ["piccante"], "allergens": ["glutine", "latte"] },
+        { "name": "Alici di Cetara Marinate", "description": "Alici fresche marinate al limone con cipolla rossa di Tropea", "price": 14, "tags": ["crudo", "senza-glutine"], "allergens": ["pesce", "solfiti"] }
       ]
     },
     {
       "name": "Primi",
       "items": [
-        { "name": "Spaghetti allo Scoglio", "description": "Spaghetti con cozze, vongole, gamberi e pomodorino fresco", "price": 18, "featured": true },
-        { "name": "Paccheri al Ragù di Pesce Spada", "description": "Paccheri di Gragnano con ragù di pesce spada, olive e capperi", "price": 20 },
-        { "name": "Risotto ai Frutti di Mare", "description": "Riso Carnaroli mantecato con frutti di mare e zafferano", "price": 22 },
-        { "name": "Fileja alla Tropeana", "description": "Pasta fresca calabrese con cipolla rossa di Tropea, tonno e pomodorini", "price": 16 },
-        { "name": "Linguine all'Astice", "description": "Linguine con mezzo astice, pomodoro pachino e basilico fresco", "price": 28, "tags": ["speciale"] }
+        { "name": "Spaghetti allo Scoglio", "description": "Spaghetti con cozze, vongole, gamberi e pomodorino fresco", "price": 18, "allergens": ["glutine", "crostacei", "molluschi"], "featured": true },
+        { "name": "Paccheri al Ragù di Pesce Spada", "description": "Paccheri di Gragnano con ragù di pesce spada, olive e capperi", "price": 20, "allergens": ["glutine", "pesce", "solfiti"] },
+        { "name": "Risotto ai Frutti di Mare", "description": "Riso Carnaroli mantecato con frutti di mare e zafferano", "price": 22, "tags": ["senza-glutine"], "allergens": ["crostacei", "molluschi", "latte"] },
+        { "name": "Fileja alla Tropeana", "description": "Pasta fresca calabrese con cipolla rossa di Tropea, tonno e pomodorini", "price": 16, "allergens": ["glutine", "pesce"] },
+        { "name": "Linguine all'Astice", "description": "Linguine con mezzo astice, pomodoro pachino e basilico fresco", "price": 28, "tags": ["speciale"], "allergens": ["glutine", "crostacei"] }
       ]
     },
     {
       "name": "Secondi",
       "items": [
-        { "name": "Grigliata Mista di Pesce", "description": "Selezione di pesce fresco alla griglia con verdure di stagione", "price": 28, "tags": ["pesce del giorno"], "featured": true },
-        { "name": "Tonno alla Griglia", "description": "Trancio di tonno rosso scottato con riduzione di cipolla rossa", "price": 24 },
-        { "name": "Frittura di Paranza", "description": "Frittura mista di pesce e calamari con limone e maionese agli agrumi", "price": 20 },
-        { "name": "Orata al Forno", "description": "Orata intera al forno con patate, olive taggiasche e pomodorini", "price": 22 },
-        { "name": "Baccala alla Calabrese", "description": "Baccala in umido con peperoni, patate e olive nere", "price": 18, "tags": ["tradizione"] }
+        { "name": "Grigliata Mista di Pesce", "description": "Selezione di pesce fresco alla griglia con verdure di stagione", "price": 28, "tags": ["pesce del giorno", "senza-glutine"], "allergens": ["pesce", "crostacei", "molluschi"], "featured": true },
+        { "name": "Tonno alla Griglia", "description": "Trancio di tonno rosso scottato con riduzione di cipolla rossa", "price": 24, "tags": ["senza-glutine"], "allergens": ["pesce"] },
+        { "name": "Frittura di Paranza", "description": "Frittura mista di pesce e calamari con limone e maionese agli agrumi", "price": 20, "allergens": ["glutine", "pesce", "uova", "molluschi"] },
+        { "name": "Orata al Forno", "description": "Orata intera al forno con patate, olive taggiasche e pomodorini", "price": 22, "tags": ["senza-glutine"], "allergens": ["pesce"] },
+        { "name": "Baccalà alla Calabrese", "description": "Baccalà in umido con peperoni, patate e olive nere", "price": 18, "tags": ["tradizione", "senza-glutine"], "allergens": ["pesce"] }
       ]
     },
     {
       "name": "Contorni",
       "items": [
-        { "name": "Insalata di Mare Tiepida", "description": "Polpo, gamberi e calamari con sedano, olive e limone", "price": 12 },
-        { "name": "Verdure Grigliate", "description": "Zucchine, melanzane e peperoni alla griglia con olio EVO", "price": 8 },
-        { "name": "Patate al Forno", "description": "Patate arrosto con rosmarino e aglio", "price": 6 },
-        { "name": "Insalata Tropea", "description": "Cipolla rossa, pomodori, olive e origano calabrese", "price": 7 }
+        { "name": "Insalata di Mare Tiepida", "description": "Polpo, gamberi e calamari con sedano, olive e limone", "price": 12, "tags": ["senza-glutine"], "allergens": ["molluschi", "crostacei", "sedano"] },
+        { "name": "Verdure Grigliate", "description": "Zucchine, melanzane e peperoni alla griglia con olio EVO", "price": 8, "tags": ["vegetariano", "senza-glutine"], "allergens": [] },
+        { "name": "Patate al Forno", "description": "Patate arrosto con rosmarino e aglio", "price": 6, "tags": ["vegetariano", "senza-glutine"], "allergens": [] },
+        { "name": "Insalata Tropea", "description": "Cipolla rossa, pomodori, olive e origano calabrese", "price": 7, "tags": ["vegetariano", "senza-glutine"], "allergens": ["solfiti"] }
       ]
     },
     {
       "name": "Dolci",
       "items": [
-        { "name": "Tiramisu della Casa", "description": "Ricetta della nonna con mascarpone e caffè espresso", "price": 8 },
-        { "name": "Tartufo di Pizzo", "description": "Il classico gelato al cioccolato e nocciola di Pizzo Calabro", "price": 7 },
-        { "name": "Semifreddo al Bergamotto", "description": "Semifreddo cremoso al bergamotto di Reggio Calabria", "price": 9 },
-        { "name": "Frutta di Stagione", "description": "Selezione di frutta fresca locale", "price": 6 }
+        { "name": "Tiramisù della Casa", "description": "Ricetta della nonna con mascarpone e caffè espresso", "price": 8, "allergens": ["uova", "latte", "glutine"] },
+        { "name": "Tartufo di Pizzo", "description": "Il classico gelato al cioccolato e nocciola di Pizzo Calabro", "price": 7, "tags": ["senza-glutine"], "allergens": ["latte", "frutta-a-guscio"] },
+        { "name": "Semifreddo al Bergamotto", "description": "Semifreddo cremoso al bergamotto di Reggio Calabria", "price": 9, "tags": ["senza-glutine"], "allergens": ["uova", "latte"] },
+        { "name": "Frutta di Stagione", "description": "Selezione di frutta fresca locale", "price": 6, "tags": ["vegetariano", "senza-glutine"], "allergens": [] }
       ]
     },
     {
       "name": "Bevande",
       "items": [
-        { "name": "Acqua Minerale", "description": "Naturale o frizzante (75cl)", "price": 3 },
-        { "name": "Vino della Casa", "description": "Bianco o rosso, Ciro DOC (calice)", "price": 5 },
-        { "name": "Vino della Casa", "description": "Bianco o rosso, Ciro DOC (bottiglia)", "price": 18 },
-        { "name": "Birra Artigianale", "description": "Birra locale calabrese (33cl)", "price": 5 },
-        { "name": "Limoncello della Casa", "description": "Fatto in casa con limoni di Calabria", "price": 4 },
-        { "name": "Caffè Espresso", "description": "Miscela napoletana", "price": 1.5 }
+        { "name": "Acqua Minerale", "description": "Naturale o frizzante (75cl)", "price": 3, "tags": ["senza-glutine"], "allergens": [] },
+        { "name": "Vino della Casa (Calice)", "description": "Bianco o rosso, Cirò DOC", "price": 5, "tags": ["senza-glutine"], "allergens": ["solfiti"] },
+        { "name": "Vino della Casa (Bottiglia)", "description": "Bianco o rosso, Cirò DOC (75cl)", "price": 18, "tags": ["senza-glutine"], "allergens": ["solfiti"] },
+        { "name": "Birra Artigianale", "description": "Birra locale calabrese (33cl)", "price": 5, "allergens": ["glutine"] },
+        { "name": "Limoncello della Casa", "description": "Fatto in casa con limoni di Calabria", "price": 4, "tags": ["senza-glutine"], "allergens": ["solfiti"] },
+        { "name": "Caffè Espresso", "description": "Miscela napoletana", "price": 1.5, "tags": ["senza-glutine"], "allergens": [] }
       ]
     }
   ]

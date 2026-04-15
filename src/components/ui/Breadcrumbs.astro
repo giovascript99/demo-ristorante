@@ -1,0 +1,43 @@
+---
+import seoData from "../../data/seo.json";
+
+interface Props {
+  items: Array<{ label: string; href?: string }>;
+  light?: boolean;
+}
+
+const { items, light = false } = Astro.props;
+
+// JSON-LD BreadcrumbList
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": item.label,
+    ...(item.href ? { "item": `${seoData.siteUrl}${item.href}` } : {}),
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+
+<nav aria-label="Breadcrumb" class:list={["text-sm", light ? "text-white/70" : "text-text-light"]}>
+  <ol class="flex flex-wrap items-center gap-1">
+    {items.map((item, i) => (
+      <li class="flex items-center gap-1">
+        {i > 0 && (
+          <svg class:list={["h-3.5 w-3.5", light ? "text-white/40" : "text-text-light/50"]} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        )}
+        {item.href ? (
+          <a href={item.href} class="transition-colors hover:text-gold">{item.label}</a>
+        ) : (
+          <span class:list={["font-medium", light ? "text-white" : "text-navy"]}>{item.label}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

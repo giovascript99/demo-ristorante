@@ -5,20 +5,40 @@ interface Props {
   ctaPrimary: { text: string; href: string };
   ctaSecondary: { text: string; href: string };
   backgroundImage?: string;
+  backgroundVideo?: string;
 }
 
-const { title, subtitle, ctaPrimary, ctaSecondary } = Astro.props;
+const { title, subtitle, ctaPrimary, ctaSecondary, backgroundImage, backgroundVideo } = Astro.props;
 ---
 
 <section class="relative flex min-h-svh items-center justify-center overflow-hidden" transition:name="hero">
-  <!-- Background placeholder -->
+  <!-- Background: video > image > placeholder -->
   <div class="absolute inset-0 bg-navy-light">
-    <!-- PLACEHOLDER: Vista panoramica della costa di Tropea al tramonto, mare cristallino, scogliera con chiesa Santa Maria dell'Isola -->
+    {backgroundVideo ? (
+      <video
+        class="absolute inset-0 h-full w-full object-cover autoplay-video"
+        src={backgroundVideo}
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+      ></video>
+    ) : backgroundImage ? (
+      <img
+        src={backgroundImage}
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover"
+        loading="eager"
+      />
+    ) : (
+      <Fragment />
+    )}
     <div class="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/50 to-navy/80"></div>
   </div>
 
   <div class="relative z-10 mx-auto max-w-4xl px-4 text-center">
-    <h1 class="font-heading text-[2.5rem] font-bold leading-tight text-white md:text-7xl">
+    <h1 class="font-heading text-[2.5rem] font-bold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
       {title}
     </h1>
     <p class="mt-6 text-lg text-white/85 md:text-xl">

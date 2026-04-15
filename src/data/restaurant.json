@@ -18,12 +18,23 @@
     "instagram": "#",
     "tripadvisor": "#"
   },
+  "reviews": {
+    "google": { "rating": 4.7, "count": 328, "url": "#" },
+    "tripadvisor": { "rating": 4.5, "count": 215, "url": "#" }
+  },
   "hours": [
     { "days": "Lunedì", "lunch": "Chiuso", "dinner": "Chiuso" },
     { "days": "Martedì - Venerdì", "lunch": "12:00 - 14:30", "dinner": "19:00 - 23:00" },
     { "days": "Sabato", "lunch": "12:00 - 15:00", "dinner": "19:00 - 23:30" },
     { "days": "Domenica", "lunch": "12:00 - 15:00", "dinner": "19:00 - 22:30" }
   ],
+  "practicalInfo": {
+    "payments": ["Contanti", "Visa", "Mastercard", "Amex", "Satispay"],
+    "parking": "Parcheggio pubblico a 100m (Via Marina). In estate consigliamo di arrivare presto.",
+    "accessibility": "Ingresso accessibile alle sedie a rotelle. Bagno accessibile. Seggioloni disponibili.",
+    "dressCode": "Informale elegante. No costumi da bagno.",
+    "coverCharge": "Coperto: 2.50 a persona (include pane, grissini e acqua)."
+  },
   "coordinates": { "lat": 38.6767, "lng": 15.8987 },
   "vatNumber": "IT01234567890",
   "priceRange": "$$",

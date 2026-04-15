@@ -13,5 +13,15 @@
     "name": "Francesca e Davide",
     "text": "Abbiamo festeggiato il nostro anniversario qui. Servizio impeccabile, piatti raffinati e un'atmosfera che ti fa sentire a casa. Chef Marco è una garanzia.",
     "rating": 5
+  },
+  {
+    "name": "Alessandro T.",
+    "text": "Portati da amici del posto, non ci aspettavamo tanto. Il polpo alla griglia si scioglieva in bocca e il tiramisù della casa è da perdere la testa. Posto autentico, niente fronzoli.",
+    "rating": 5
+  },
+  {
+    "name": "Maria Luisa D.",
+    "text": "Siamo tornati tre volte durante la vacanza. La zuppa di pesce è un capolavoro, il personale gentilissimo e i prezzi onesti per la qualità che offrono. Consigliatissimo!",
+    "rating": 4
   }
 ]

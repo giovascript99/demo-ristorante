@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Serata Degustazione Vini Calabresi",
+    "date": "2026-05-10",
+    "time": "20:00",
+    "description": "Un viaggio tra i migliori vini della Calabria in abbinamento a piatti del nostro chef. Cirò DOC, Greco di Bianco e altre sorprese. Posti limitati.",
+    "price": 55,
+    "tag": "Degustazione"
+  },
+  {
+    "title": "Festa del Pesce Azzurro",
+    "date": "2026-05-24",
+    "time": "19:30",
+    "description": "Menu speciale dedicato al pesce azzurro del Tirreno: alici, sardine, sgombri e ricciole preparati in dieci varianti dalla tradizione calabrese.",
+    "price": 45,
+    "tag": "Menu Speciale"
+  },
+  {
+    "title": "Cena sotto le Stelle",
+    "date": "2026-06-15",
+    "time": "20:30",
+    "description": "La terrazza si illumina di candele per una serata romantica con menu a sorpresa dello chef, musica dal vivo e vista sulle Isole Eolie.",
+    "price": 75,
+    "tag": "Evento Speciale"
+  },
+  {
+    "title": "Cooking Class: Pasta Fresca Calabrese",
+    "date": "2026-06-28",
+    "time": "16:00",
+    "description": "Impara a preparare fileja, scilatelle e altre paste tradizionali calabresi con lo chef Marco. Include degustazione finale con vino.",
+    "price": 60,
+    "tag": "Cooking Class"
+  }
+]

@@ -1,10 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionTitle from "../components/ui/SectionTitle.astro";
-import AnimateOnScroll from "../components/ui/AnimateOnScroll.astro";
-import PlaceholderImage from "../components/ui/PlaceholderImage.astro";
 import ValueCard from "../components/about/ValueCard.astro";
 import Timeline from "../components/about/Timeline.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
 import restaurantData from "../data/restaurant.json";
 
 const timelineEvents = [
@@ -37,94 +36,100 @@ const values = [
   title="Chi Siamo | La Nostra Storia"
   description="Dal 1985, la famiglia Ferraro porta in tavola i sapori del mare di Tropea. Scopri la nostra storia, i nostri valori e la passione per la cucina calabrese."
 >
-  <!-- Page header -->
-  <section class="pt-32 pb-16">
+  <section class="pt-24 md:pt-32 pb-16">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
-      <SectionTitle
-        title="La Nostra Storia"
-        subtitle="Una famiglia, il mare e la passione per la cucina calabrese dal 1985"
-      />
+      <div class="mb-6">
+        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Chi Siamo" }]} />
+      </div>
+      <div data-reveal="fade-up">
+        <SectionTitle
+          title="La Nostra Storia"
+          subtitle="Una famiglia, il mare e la passione per la cucina calabrese dal 1985"
+        />
+      </div>
     </div>
   </section>
 
-  <!-- Story section -->
   <section class="pb-20">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
       <div class="grid gap-12 md:grid-cols-2 items-center">
-        <AnimateOnScroll animation="slide-right">
-          <div class="space-y-6 text-text-light leading-relaxed">
-            <p>
-              Tutto è iniziato nel 1985, quando Nonno Giuseppe Ferraro — pescatore da una vita intera — decise che il pesce più fresco di Tropea meritava una tavola degna. Con otto tavoli, una cucina minuscola e un amore sconfinato per il mare, nacque la <strong class="text-navy font-semibold">Taverna del Porto</strong>.
-            </p>
-            <p>
-              Da allora, tre generazioni della famiglia Ferraro hanno portato avanti la stessa promessa: <em>portare il mare in tavola, con rispetto e passione</em>. Ogni mattina, prima dell'alba, il nostro pesce viene selezionato direttamente dalle barche dei pescatori locali, gli stessi che rifornivano Nonno Giuseppe quarant'anni fa.
-            </p>
-            <p>
-              La nostra cucina è un dialogo tra tradizione e creatività. Le ricette della nonna Maria — i suoi spaghetti allo scoglio, il polpo alla griglia, il tiramisu che faceva piangere di gioia — convivono con le creazioni di Chef Marco, che ha portato una ventata di freschezza senza mai tradire le radici.
-            </p>
-            <p>
-              Oggi la Taverna del Porto è un punto di riferimento per chi cerca <strong class="text-navy font-semibold">l'autentica cucina di mare calabrese</strong>. La terrazza affacciata sul Tirreno, dove lo sguardo si perde tra le Isole Eolie e lo Stromboli, è il nostro palcoscenico preferito per regalarvi serate indimenticabili.
-            </p>
-          </div>
-        </AnimateOnScroll>
-        <AnimateOnScroll animation="slide-left">
-          <PlaceholderImage
+        <div data-reveal="fade-right" class="order-2 md:order-1 space-y-6 text-text-light leading-relaxed">
+          <p>
+            Tutto è iniziato nel 1985, quando Nonno Giuseppe Ferraro — pescatore da una vita intera — decise che il pesce più fresco di Tropea meritava una tavola degna. Con otto tavoli, una cucina minuscola e un amore sconfinato per il mare, nacque la <strong class="text-navy font-semibold">Taverna del Porto</strong>.
+          </p>
+          <p>
+            Da allora, tre generazioni della famiglia Ferraro hanno portato avanti la stessa promessa: <em>portare il mare in tavola, con rispetto e passione</em>. Ogni mattina, prima dell'alba, il nostro pesce viene selezionato direttamente dalle barche dei pescatori locali, gli stessi che rifornivano Nonno Giuseppe quarant'anni fa.
+          </p>
+          <p>
+            La nostra cucina è un dialogo tra tradizione e creatività. Le ricette della nonna Maria — i suoi spaghetti allo scoglio, il polpo alla griglia, il tiramisu che faceva piangere di gioia — convivono con le creazioni di Chef Marco, che ha portato una ventata di freschezza senza mai tradire le radici.
+          </p>
+          <p>
+            Oggi la Taverna del Porto è un punto di riferimento per chi cerca <strong class="text-navy font-semibold">l'autentica cucina di mare calabrese</strong>. La terrazza affacciata sul Tirreno, dove lo sguardo si perde tra le Isole Eolie e lo Stromboli, è il nostro palcoscenico preferito per regalarvi serate indimenticabili.
+          </p>
+        </div>
+        <div data-reveal="fade-left" class="order-1 md:order-2">
+          <img
+            src="/images/chi-siamo/chi-siamo-famiglia.jpg"
             alt="La famiglia Ferraro nella cucina della Taverna del Porto"
-            description="Foto di famiglia dei Ferraro: nonno Giuseppe, i genitori e Chef Marco nella cucina del ristorante, con padelle in rame e ingredienti freschi sul bancone"
-            aspectRatio="4/5"
-            class="rounded-xl border-2 border-gold/20"
+            width="600"
+            height="750"
+            loading="lazy"
+            class="rounded-xl border-2 border-gold/20 w-full object-cover"
+            style="aspect-ratio: 4/5;"
           />
-        </AnimateOnScroll>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Chef section -->
   <section class="py-20 bg-sand-dark">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
       <div class="grid gap-12 md:grid-cols-2 items-center">
-        <AnimateOnScroll animation="clip-reveal">
-          <PlaceholderImage
+        <div data-reveal="zoom-in">
+          <img
+            src="/images/chi-siamo/chi-siamo-chef.jpg"
             alt={`${restaurantData.chef.name} - ${restaurantData.chef.title}`}
-            description="Ritratto di Chef Marco Ferraro in giacca bianca, braccia incrociate, sorriso sicuro, cucina professionale sfocata sullo sfondo"
-            aspectRatio="3/4"
-            class="rounded-xl"
+            width="600"
+            height="800"
+            loading="lazy"
+            class="rounded-xl w-full object-cover"
+            style="aspect-ratio: 3/4;"
           />
-        </AnimateOnScroll>
-        <AnimateOnScroll animation="fade-up">
-          <div>
-            <h2 class="font-heading text-3xl font-bold text-navy md:text-4xl">{restaurantData.chef.name}</h2>
-            <p class="mt-2 text-gold font-semibold">{restaurantData.chef.title}</p>
-            <div class="mt-1 h-0.5 w-10 bg-gold"></div>
-            <p class="mt-6 text-text-light leading-relaxed">{restaurantData.chef.bio}</p>
-            <p class="mt-4 text-text-light leading-relaxed">
-              Dopo anni di formazione tra Napoli, Roma e la Costa Azzurra, Marco è tornato a Tropea con una missione chiara: innovare senza dimenticare. Il suo menu cambia con le stagioni e con il mare, perché — come diceva Nonno Giuseppe — "il pesce decide lui cosa cucini oggi".
-            </p>
-          </div>
-        </AnimateOnScroll>
+        </div>
+        <div data-reveal="fade-up">
+          <h2 class="font-heading text-3xl font-bold text-navy md:text-4xl">{restaurantData.chef.name}</h2>
+          <p class="mt-2 text-gold font-semibold">{restaurantData.chef.title}</p>
+          <div class="mt-1 h-0.5 w-10 bg-gold"></div>
+          <p class="mt-6 text-text-light leading-relaxed">{restaurantData.chef.bio}</p>
+          <p class="mt-4 text-text-light leading-relaxed">
+            Dopo anni di formazione tra Napoli, Roma e la Costa Azzurra, Marco è tornato a Tropea con una missione chiara: innovare senza dimenticare. Il suo menu cambia con le stagioni e con il mare, perché — come diceva Nonno Giuseppe — "il pesce decide lui cosa cucini oggi".
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Values section -->
   <section class="py-20">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
-      <SectionTitle title="I Nostri Valori" subtitle="I principi che guidano ogni giorno il nostro lavoro" />
-      <div class="grid gap-8 md:grid-cols-3">
-        {values.map((value, i) => (
-          <AnimateOnScroll animation="fade-up" delay={(i + 1) * 100}>
+      <div data-reveal="fade-up">
+        <SectionTitle title="I Nostri Valori" subtitle="I principi che guidano ogni giorno il nostro lavoro" />
+      </div>
+      <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3" data-reveal-stagger>
+        {values.map((value) => (
+          <div data-reveal="fade-up">
             <ValueCard icon={value.icon} title={value.title} text={value.text} />
-          </AnimateOnScroll>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Timeline section -->
   <section class="py-20 bg-sand-dark">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
-      <SectionTitle title="Il Nostro Percorso" subtitle="Quarant'anni di storia, passione e sapori" />
-      <div class="mt-12">
+      <div data-reveal="fade-up">
+        <SectionTitle title="Il Nostro Percorso" subtitle="Quarant'anni di storia, passione e sapori" />
+      </div>
+      <div class="mt-12" data-reveal="fade-up">
         <Timeline events={timelineEvents} />
       </div>
     </div>
