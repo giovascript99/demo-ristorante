@@ -24,7 +24,6 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
     subtitle={restaurant.tagline}
     ctaPrimary={{ text: t(lang, "home.cta.menu"), href: "/en/menu/" }}
     ctaSecondary={{ text: t(lang, "home.cta.book"), href: whatsappUrl }}
-    backgroundVideo="/images/home/hero-1.mp4"
   />
 
   <section class="py-20 md:py-28">
@@ -129,7 +128,7 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
     <div class="mx-auto max-w-7xl px-4 md:px-8">
       <div class="flex flex-col gap-6 md:hidden">
         <div data-reveal="fade-right" class="overflow-hidden rounded-xl">
-          <img src="/images/home/dual-image-sinistra.png" alt="Restaurant interior with stone arches" width="600" height="800" loading="lazy" class="w-full aspect-[3/4] object-cover" />
+          <img src="/images/home/dual-image-sinistra.jpg" alt="Restaurant interior with stone arches" width="600" height="800" loading="lazy" class="w-full aspect-[3/4] object-cover" />
         </div>
         <div data-reveal="fade-left" class="overflow-hidden rounded-xl">
           <img src="/images/home/dual-image-destra.jpg" alt="Terrace with sea view at sunset" width="600" height="800" loading="lazy" class="w-full aspect-[3/4] object-cover" />
@@ -137,7 +136,7 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
       </div>
       <div class="hidden md:grid md:grid-cols-4 md:gap-6 md:items-start" id="dual-image-section">
         <div class="col-span-1 overflow-hidden rounded-xl" data-reveal="fade-right">
-          <img src="/images/home/dual-image-sinistra.png" alt="Restaurant interior with stone arches" width="600" height="800" loading="lazy" class="w-full aspect-[3/4] object-cover" />
+          <img src="/images/home/dual-image-sinistra.jpg" alt="Restaurant interior with stone arches" width="600" height="800" loading="lazy" class="w-full aspect-[3/4] object-cover" />
         </div>
         <div class="col-span-3 overflow-hidden rounded-xl" id="dual-image-right" style="transform: translateY(120px);">
           <img src="/images/home/dual-image-destra.jpg" alt="Terrace with sea view at sunset" width="900" height="1200" loading="lazy" class="w-full h-full object-cover" />

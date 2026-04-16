@@ -1,0 +1,186 @@
+{
+  "intro": {
+    "it": "La nostra carta dei vini nasce dalla passione per il territorio calabrese e dalla ricerca dei migliori produttori locali. Ogni bottiglia è selezionata per esaltare i sapori del mare e della nostra cucina.",
+    "en": "Our wine list is born from a passion for the Calabrian territory and the pursuit of the finest local producers. Every bottle is selected to enhance the flavours of the sea and our cuisine."
+  },
+  "categories": [
+    {
+      "name": { "it": "Bianchi", "en": "White Wines" },
+      "wines": [
+        {
+          "name": "Cirò Bianco DOC",
+          "winery": "Librandi",
+          "grape": "Greco Bianco",
+          "region": "Cirò Marina, Calabria",
+          "note": {
+            "it": "Fresco e minerale, con note di agrumi e fiori bianchi. Perfetto con crudi e antipasti di mare.",
+            "en": "Fresh and mineral, with notes of citrus and white flowers. Perfect with raw fish and seafood starters."
+          },
+          "pairing": { "it": "Crudo di gamberi, carpaccio di pesce", "en": "Raw prawns, fish carpaccio" },
+          "price": 28
+        },
+        {
+          "name": "Greco di Bianco DOC",
+          "winery": "Cataldo Ferraro",
+          "grape": "Greco Bianco",
+          "region": "Bianco, Calabria",
+          "note": {
+            "it": "Vino passito dorato con aromi di albicocca, miele e scorza d'arancia. Ideale a fine pasto.",
+            "en": "Golden passito wine with aromas of apricot, honey and orange peel. Ideal at the end of the meal."
+          },
+          "pairing": { "it": "Dolci della casa, formaggi stagionati", "en": "Homemade desserts, aged cheeses" },
+          "price": 35
+        },
+        {
+          "name": "Pecorello IGT",
+          "winery": "Ippolito 1845",
+          "grape": "Pecorello",
+          "region": "Cirò, Calabria",
+          "note": {
+            "it": "Elegante e strutturato, con sentori di pesca bianca e mandorla. Ottimo con primi di pesce.",
+            "en": "Elegant and structured, with hints of white peach and almond. Excellent with fish pasta."
+          },
+          "pairing": { "it": "Linguine allo scoglio, risotto ai frutti di mare", "en": "Seafood linguine, seafood risotto" },
+          "price": 26
+        },
+        {
+          "name": "Mantonico IGT",
+          "winery": "Cataldo Ferraro",
+          "grape": "Mantonico",
+          "region": "Locride, Calabria",
+          "note": {
+            "it": "Antico vitigno calabrese, ricco e aromatico con note tropicali e sapidità marina.",
+            "en": "Ancient Calabrian grape, rich and aromatic with tropical notes and marine salinity."
+          },
+          "pairing": { "it": "Frittura di paranza, pesce al forno", "en": "Mixed fried fish, baked fish" },
+          "price": 30
+        }
+      ]
+    },
+    {
+      "name": { "it": "Rossi", "en": "Red Wines" },
+      "wines": [
+        {
+          "name": "Cirò Rosso Classico DOC",
+          "winery": "Librandi",
+          "grape": "Gaglioppo",
+          "region": "Cirò, Calabria",
+          "note": {
+            "it": "Rosso mediterraneo per eccellenza: ciliegia, spezie dolci e tannini morbidi. Sorprendente con il tonno.",
+            "en": "The quintessential Mediterranean red: cherry, sweet spices and soft tannins. Surprising with tuna."
+          },
+          "pairing": { "it": "Tonno alla griglia, pesce spada", "en": "Grilled tuna, swordfish" },
+          "price": 25
+        },
+        {
+          "name": "Magno Megonio IGT",
+          "winery": "Librandi",
+          "grape": "Magliocco",
+          "region": "Val di Neto, Calabria",
+          "note": {
+            "it": "Potente e vellutato, con frutti di bosco maturi e note balsamiche. Per piatti robusti.",
+            "en": "Powerful and velvety, with ripe berries and balsamic notes. For robust dishes."
+          },
+          "pairing": { "it": "Stocco alla mammolese, 'nduja e formaggi", "en": "Stockfish Mammola-style, 'nduja and cheeses" },
+          "price": 38
+        },
+        {
+          "name": "Terre di Cosenza DOP",
+          "winery": "Ferraro Vini",
+          "grape": "Magliocco Dolce",
+          "region": "Cosenza, Calabria",
+          "note": {
+            "it": "Fruttato e avvolgente, con tannini eleganti e finale lungo. Versatile a tavola.",
+            "en": "Fruity and enveloping, with elegant tannins and a long finish. Versatile at the table."
+          },
+          "pairing": { "it": "Polpo alla griglia, zuppe di pesce", "en": "Grilled octopus, fish soups" },
+          "price": 32
+        }
+      ]
+    },
+    {
+      "name": { "it": "Rosati", "en": "Rosé Wines" },
+      "wines": [
+        {
+          "name": "Cirò Rosato DOC",
+          "winery": "Ippolito 1845",
+          "grape": "Gaglioppo",
+          "region": "Cirò, Calabria",
+          "note": {
+            "it": "Rosa tenue con riflessi corallo. Fragole, melograno e un finale sapido e rinfrescante.",
+            "en": "Pale pink with coral reflections. Strawberries, pomegranate and a savoury, refreshing finish."
+          },
+          "pairing": { "it": "Insalata di mare, bruschette al pesce", "en": "Seafood salad, fish bruschetta" },
+          "price": 24
+        },
+        {
+          "name": "Rosato del Tirreno IGT",
+          "winery": "Cataldo Ferraro",
+          "grape": "Gaglioppo, Greco Nero",
+          "region": "Costa Tirrenica, Calabria",
+          "note": {
+            "it": "Fresco e vivace, con petali di rosa e agrumi. Il vino dell'aperitivo sulla terrazza.",
+            "en": "Fresh and lively, with rose petals and citrus. The aperitivo wine on the terrace."
+          },
+          "pairing": { "it": "Aperitivo, fritture leggere, cozze", "en": "Aperitivo, light fried dishes, mussels" },
+          "price": 22
+        }
+      ]
+    },
+    {
+      "name": { "it": "Bollicine", "en": "Sparkling Wines" },
+      "wines": [
+        {
+          "name": "Spumante Greco Metodo Classico",
+          "winery": "Librandi",
+          "grape": "Greco Bianco",
+          "region": "Cirò Marina, Calabria",
+          "note": {
+            "it": "Perlage fine e persistente. Crosta di pane, mela verde e un finale sapido che ricorda il mare.",
+            "en": "Fine and persistent bubbles. Bread crust, green apple and a savoury finish reminiscent of the sea."
+          },
+          "pairing": { "it": "Ostriche, crudi, celebrazioni", "en": "Oysters, raw fish, celebrations" },
+          "price": 40
+        },
+        {
+          "name": "Brut Rosé Calabrese",
+          "winery": "Ippolito 1845",
+          "grape": "Gaglioppo",
+          "region": "Cirò, Calabria",
+          "note": {
+            "it": "Bollicina rosa delicata con frutti rossi e freschezza vivace. Perfetto per brindare.",
+            "en": "Delicate pink bubbles with red fruits and vibrant freshness. Perfect for toasting."
+          },
+          "pairing": { "it": "Antipasti misti, tartare di pesce", "en": "Mixed starters, fish tartare" },
+          "price": 36
+        }
+      ]
+    }
+  ],
+  "chefPicks": [
+    {
+      "name": "Cirò Bianco DOC",
+      "winery": "Librandi",
+      "quote": {
+        "it": "Il compagno ideale per il nostro crudo. La sua mineralità esalta ogni sfumatura del pesce fresco.",
+        "en": "The ideal companion for our raw fish. Its minerality enhances every nuance of fresh fish."
+      }
+    },
+    {
+      "name": "Cirò Rosso Classico DOC",
+      "winery": "Librandi",
+      "quote": {
+        "it": "Un rosso che non ti aspetti con il pesce. Provatelo con il nostro tonno alla griglia: vi sorprenderà.",
+        "en": "A red wine you wouldn't expect with fish. Try it with our grilled tuna: it will surprise you."
+      }
+    },
+    {
+      "name": "Spumante Greco Metodo Classico",
+      "winery": "Librandi",
+      "quote": {
+        "it": "Le bollicine con cui apriamo ogni serata speciale. Il Greco spumantizzato è una perla della Calabria.",
+        "en": "The bubbles we open every special evening with. Sparkling Greco is a Calabrian gem."
+      }
+    }
+  ]
+}

@@ -15,13 +15,13 @@ const pathMap: Record<string, string> = {
   "/menu/": "/en/menu/",
   "/chi-siamo/": "/en/about-us/",
   "/galleria/": "/en/gallery/",
-  "/eventi/": "/en/events/",
+  "/la-cantina/": "/en/wine-cellar/",
   "/contatti/": "/en/contact/",
   "/en/": "/",
   "/en/menu/": "/menu/",
   "/en/about-us/": "/chi-siamo/",
   "/en/gallery/": "/galleria/",
-  "/en/events/": "/eventi/",
+  "/en/wine-cellar/": "/la-cantina/",
   "/en/contact/": "/contatti/",
 };
 
@@ -32,17 +32,17 @@ const navLinks = lang === "it"
   ? [
       { label: "Home", href: "/" },
       { label: "Menu", href: "/menu/" },
+      { label: "La Cantina", href: "/la-cantina/" },
       { label: "Chi Siamo", href: "/chi-siamo/" },
       { label: "Galleria", href: "/galleria/" },
-      { label: "Eventi", href: "/eventi/" },
       { label: "Contatti", href: "/contatti/" },
     ]
   : [
       { label: "Home", href: "/en/" },
       { label: "Menu", href: "/en/menu/" },
+      { label: "Wine Cellar", href: "/en/wine-cellar/" },
       { label: "About Us", href: "/en/about-us/" },
       { label: "Gallery", href: "/en/gallery/" },
-      { label: "Events", href: "/en/events/" },
       { label: "Contact", href: "/en/contact/" },
     ];
 

@@ -56,7 +56,7 @@ const menuJsonLd = {
     </div>
   </section>
 
-  <nav class="sticky top-[4.5rem] z-30 bg-sand-dark/95 backdrop-blur-sm border-b border-sand-dark">
+  <nav class="hidden md:block md:sticky md:top-[4.5rem] z-30 bg-sand-dark/95 backdrop-blur-sm border-b border-sand-dark">
     <div class="mx-auto max-w-4xl px-4 md:px-8 py-3">
       <div class="flex flex-wrap items-center justify-center gap-1.5">
         {menuData.categories.map((cat) => (
@@ -83,8 +83,8 @@ const menuJsonLd = {
 
   <section id="menu-items" class="py-16 bg-sand scroll-mt-[14rem] md:scroll-mt-[11rem]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(212,168,83,0.03) 39px, rgba(212,168,83,0.03) 40px);">
     <div class="mx-auto max-w-4xl px-4 md:px-8 space-y-16">
-      {menuData.categories.map((cat) => (
-        <MenuCategory name={cat.name} items={cat.items} allergenLabels={menuData.allergenLabels} />
+      {menuData.categories.map((cat, i) => (
+        <MenuCategory name={cat.name} items={cat.items} allergenLabels={menuData.allergenLabels} index={i} />
       ))}
     </div>
   </section>

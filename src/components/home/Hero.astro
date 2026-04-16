@@ -4,41 +4,22 @@ interface Props {
   subtitle: string;
   ctaPrimary: { text: string; href: string };
   ctaSecondary: { text: string; href: string };
-  backgroundImage?: string;
-  backgroundVideo?: string;
 }
 
-const { title, subtitle, ctaPrimary, ctaSecondary, backgroundImage, backgroundVideo } = Astro.props;
+const { title, subtitle, ctaPrimary, ctaSecondary } = Astro.props;
 ---
 
 <section class="relative flex min-h-svh items-center justify-center overflow-hidden" transition:name="hero">
-  <!-- Background: video > image > placeholder -->
   <div class="absolute inset-0 bg-navy-light">
-    {backgroundVideo ? (
-      <img
-        src={backgroundVideo.replace('.mp4', '-poster.jpg')}
-        alt=""
-        class="absolute inset-0 h-full w-full object-cover"
-      />
-      <video
-        class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 autoplay-video"
-        src={backgroundVideo}
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-      ></video>
-    ) : backgroundImage ? (
-      <img
-        src={backgroundImage}
-        alt=""
-        class="absolute inset-0 h-full w-full object-cover"
-        loading="eager"
-      />
-    ) : (
-      <Fragment />
-    )}
+    <video
+      class="absolute inset-0 h-full w-full object-cover"
+      src="/images/home/hero-1.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    ></video>
     <div class="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/50 to-navy/80"></div>
   </div>
 

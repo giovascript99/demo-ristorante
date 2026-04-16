@@ -22,7 +22,6 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
     subtitle={restaurant.tagline}
     ctaPrimary={{ text: "Scopri il Menu", href: "/menu/" }}
     ctaSecondary={{ text: "Prenota un Tavolo", href: whatsappUrl }}
-    backgroundVideo="/images/home/hero-1.mp4"
   />
 
   <!-- 2. Chi Siamo brief -->
@@ -287,7 +286,7 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
       <div class="flex flex-col gap-6 md:hidden">
         <div data-reveal="fade-right" class="overflow-hidden rounded-xl">
           <img
-            src="/images/home/dual-image-sinistra.png"
+            src="/images/home/dual-image-sinistra.jpg"
             alt="Interno del ristorante con archi in pietra"
             width="600"
             height="800"
@@ -306,11 +305,11 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
           />
         </div>
       </div>
-      <!-- Desktop: 1/4 fixed left + 3/4 right slides up on scroll -->
-      <div class="hidden md:grid md:grid-cols-4 md:gap-6 md:items-start" id="dual-image-section">
-        <div class="col-span-1 overflow-hidden rounded-xl" data-reveal="fade-right">
+      <!-- Desktop: 2/5 left (offset down) + 3/5 right (slides up on scroll) -->
+      <div class="hidden md:grid md:grid-cols-5 md:gap-8 md:items-start" id="dual-image-section">
+        <div class="col-span-2 overflow-hidden rounded-xl" id="dual-image-left">
           <img
-            src="/images/home/dual-image-sinistra.png"
+            src="/images/home/dual-image-sinistra.jpg"
             alt="Interno del ristorante con archi in pietra"
             width="600"
             height="800"
@@ -318,7 +317,7 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
             class="w-full aspect-[3/4] object-cover"
           />
         </div>
-        <div class="col-span-3 overflow-hidden rounded-xl" id="dual-image-right" style="transform: translateY(120px);">
+        <div class="col-span-3 overflow-hidden rounded-xl" id="dual-image-right">
           <img
             src="/images/home/dual-image-destra.jpg"
             alt="Terrazza con vista mare al tramonto"
@@ -346,9 +345,12 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
   <script>
     document.addEventListener("astro:page-load", () => {
       const rightImg = document.getElementById("dual-image-right");
+      const leftImg = document.getElementById("dual-image-left");
       const section = document.getElementById("dual-image-section");
-      const leftImg = section?.querySelector(".col-span-1") as HTMLElement | null;
-      if (!rightImg || !section || !leftImg || window.innerWidth < 768) return;
+      if (!rightImg || !leftImg || !section || window.innerWidth < 768) return;
+
+      const leftInner = leftImg.querySelector("img") as HTMLElement;
+      const rightInner = rightImg.querySelector("img") as HTMLElement;
 
       // Right image = left image height + 40px
       function syncHeight() {
@@ -361,10 +363,17 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
         const rect = section!.getBoundingClientRect();
         const vh = window.innerHeight;
         if (rect.bottom < 0 || rect.top > vh) return;
-        // Progress: 0 when section bottom enters viewport, 1 when section top reaches viewport center
-        const progress = Math.min(Math.max((vh - rect.top) / (vh * 0.6), 0), 1);
-        const offset = 120 * (1 - progress);
-        rightImg!.style.transform = `translateY(${offset}px)`;
+        const progress = Math.min(Math.max((vh - rect.top) / (vh + rect.height), 0), 1);
+        // Counter-scroll: left moves down, right moves up
+        const leftY = -40 + progress * 80;
+        const rightY = 80 - progress * 120;
+        // Subtle zoom on inner images
+        const leftScale = 1 + progress * 0.06;
+        const rightScale = 1.06 - progress * 0.04;
+        leftImg!.style.transform = `translate3d(0, ${leftY}px, 0)`;
+        rightImg!.style.transform = `translate3d(0, ${rightY}px, 0)`;
+        if (leftInner) leftInner.style.transform = `scale(${leftScale})`;
+        if (rightInner) rightInner.style.transform = `scale(${rightScale})`;
       }
 
       window.addEventListener("scroll", updatePosition, { passive: true });
@@ -378,13 +387,8 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
   </script>
 
   <!-- 5. Parallax photo break -->
-  <section class="parallax-section relative h-[50vh] md:h-[65vh] overflow-hidden" aria-label="Vista del ristorante">
+  <section class="parallax-section relative h-[85vh] overflow-hidden" aria-label="Vista del ristorante">
     <div class="parallax-bg absolute inset-0 bg-navy">
-      <img
-        src="/images/home/parallax-poster.jpg"
-        alt=""
-        class="h-full w-full object-cover"
-      />
       <video
         src="/images/home/video-parallax.mp4"
         autoplay
@@ -392,14 +396,14 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
         loop
         playsinline
         preload="auto"
-        class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 autoplay-video"
+        class="h-full w-full object-cover"
       ></video>
     </div>
-    <div class="absolute inset-0 bg-navy/40"></div>
+    <div class="absolute inset-0 bg-navy/60"></div>
     <div class="relative flex h-full items-center justify-center text-center px-4">
       <div data-reveal="fade-up">
-        <p class="font-heading text-2xl font-bold text-white md:text-4xl lg:text-5xl drop-shadow-lg">
-          "Il mare in ogni piatto"
+        <p class="font-heading text-2xl font-bold text-white md:text-4xl lg:text-5xl drop-shadow-lg italic">
+          "Dove il mare incontra la tradizione,<br class="hidden sm:inline" /> ogni piatto racconta la nostra storia."
         </p>
         <div class="mt-4 h-0.5 w-16 bg-gold mx-auto"></div>
       </div>
@@ -459,11 +463,14 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
   </section>
 
   <!-- 7. CTA Finale -->
-  <section class="relative py-20 md:py-28 bg-navy text-white overflow-hidden">
-    <div
-      class="absolute inset-0 opacity-5"
-      style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px);"
-    ></div>
+  <section class="relative py-20 md:py-28 text-white overflow-hidden">
+    <img
+      src="/images/home/cta-finale.jpg"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <div class="absolute inset-0 bg-navy/75"></div>
     <div class="relative mx-auto max-w-7xl px-4 md:px-8 text-center" data-reveal="fade-up">
       <SectionTitle
         title="Prenota il Tuo Tavolo"

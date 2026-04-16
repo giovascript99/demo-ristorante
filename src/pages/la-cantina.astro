@@ -1,0 +1,154 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionTitle from "../components/ui/SectionTitle.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+import winesData from "../data/wines.json";
+import restaurantData from "../data/restaurant.json";
+
+const lang = "it";
+const categories = winesData.categories;
+const chefPicks = winesData.chefPicks;
+const whatsappUrl = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(restaurantData.whatsappMessage)}`;
+---
+
+<BaseLayout
+  title="La Cantina | Vini Calabresi a Tropea"
+  description="La nostra selezione di vini calabresi: Cirò DOC, Greco di Bianco, bollicine e rosati. Ogni bottiglia scelta per esaltare i sapori del mare."
+>
+  <!-- Page header -->
+  <section class="relative pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
+    <img
+      src="/images/cantina/header-cantina.jpg"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 h-full w-full object-cover object-[center_40%]"
+    />
+    <div class="absolute inset-0 bg-navy/70"></div>
+    <div class="relative mx-auto max-w-4xl px-4 md:px-8">
+      <div class="mb-6">
+        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "La Cantina" }]} light={true} />
+      </div>
+      <div data-reveal="fade-up">
+        <SectionTitle
+          title="La Cantina"
+          subtitle="Vini calabresi selezionati per esaltare i sapori del mare"
+          light={true}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="py-16 md:py-20 bg-sand">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <div class="grid items-center gap-12 md:grid-cols-2">
+        <div data-reveal="fade-right">
+          <p class="text-lg text-text-light leading-relaxed">
+            {winesData.intro.it}
+          </p>
+        </div>
+        <div data-reveal="fade-left">
+          <div class="overflow-hidden rounded-xl">
+            <img
+              src="/images/cantina/sezionte-intro.jpg"
+              alt="Sommelier che versa vino bianco con vista mare"
+              width="800"
+              height="600"
+              loading="lazy"
+              class="w-full aspect-[4/3] object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wine categories -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="mx-auto max-w-4xl px-4 md:px-8 space-y-20">
+      {categories.map((cat, i) => {
+        const reveal = i % 2 === 0 ? "fade-right" : "fade-left";
+        return (
+          <div data-reveal={reveal}>
+            <h2 class="font-heading text-2xl font-bold text-navy mb-2 md:text-3xl text-center">{cat.name.it}</h2>
+            <div class="h-0.5 w-10 bg-gold mb-10 mx-auto"></div>
+            <div class="space-y-8">
+              {cat.wines.map((wine) => (
+                <div class="flex items-start justify-between gap-4 border-b border-sand-dark pb-6 last:border-0 last:pb-0">
+                  <div class="flex-1">
+                    <div class="flex items-baseline gap-2 flex-wrap">
+                      <h3 class="font-heading text-lg font-bold text-navy">{wine.name}</h3>
+                      <span class="text-sm text-gold font-semibold">{wine.winery}</span>
+                    </div>
+                    <p class="mt-1 text-xs text-text-light/70 uppercase tracking-wider">{wine.grape} &mdash; {wine.region}</p>
+                    <p class="mt-2 text-sm text-text-light leading-relaxed">{wine.note.it}</p>
+                    <p class="mt-1.5 text-xs text-gold italic">Abbinamento: {wine.pairing.it}</p>
+                  </div>
+                  <span class="text-xl font-bold text-navy whitespace-nowrap">&euro;{wine.price}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Chef's picks -->
+  <section class="relative py-16 md:py-20 bg-sand overflow-hidden">
+    <div class="mx-auto max-w-4xl px-4 md:px-8">
+      <div data-reveal="fade-up">
+        <SectionTitle title="La Selezione dello Chef" subtitle="I vini che Marco consiglia per vivere al meglio la nostra cucina" />
+      </div>
+      <div class="grid gap-8 md:grid-cols-3 mt-4">
+        {chefPicks.map((pick, i) => (
+          <div data-reveal="fade-up" class="rounded-xl bg-white p-6 shadow-sm border border-sand-dark text-center">
+            <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gold/10">
+              <svg class="h-6 w-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+              </svg>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-navy">{pick.name}</h3>
+            <p class="text-sm text-gold font-semibold mt-1">{pick.winery}</p>
+            <p class="mt-3 text-sm text-text-light italic leading-relaxed">"{pick.quote.it}"</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative py-24 md:py-32 overflow-hidden">
+    <img
+      src="/images/cantina/cta-finale.jpg"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <div class="absolute inset-0 bg-navy/75"></div>
+    <div class="relative mx-auto max-w-4xl px-4 md:px-8" data-reveal="fade-up">
+      <div class="text-center">
+        <h2 class="font-heading text-2xl font-bold text-white md:text-3xl">Scopri i Nostri Vini a Tavola</h2>
+        <p class="mt-4 text-white/80 max-w-2xl mx-auto leading-relaxed">
+          La carta dei vini prende vita con i piatti dello chef. Prenota un tavolo e lasciati guidare nei migliori abbinamenti.
+        </p>
+        <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-md bg-gold px-8 py-3 font-bold text-navy transition-all hover:bg-gold-light hover:scale-[1.02]"
+          >
+            Prenota un Tavolo
+          </a>
+          <a
+            href="/menu/"
+            class="rounded-md border-2 border-white px-8 py-3 font-bold text-white transition-all hover:bg-white hover:text-navy"
+          >
+            Scopri il Menu
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
