@@ -9,7 +9,7 @@ interface Props {
 const { title, subtitle, ctaPrimary, ctaSecondary } = Astro.props;
 ---
 
-<section class="relative flex min-h-svh items-center justify-center overflow-hidden" transition:name="hero">
+<section class="relative flex min-h-svh items-center justify-center overflow-hidden" transition:name="hero" data-hero>
   <div class="absolute inset-0 bg-navy-light">
     <video
       class="absolute inset-0 h-full w-full object-cover"

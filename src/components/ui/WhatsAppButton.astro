@@ -15,6 +15,7 @@ const href = `https://wa.me/${phoneNumber.replace(/[^0-9]/g, "")}${encodedMessag
 <div
   class="wa-fab fixed bottom-6 right-6 z-50 flex items-center gap-3"
   style="bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));"
+  data-wa-fab
 >
   <span class="wa-tooltip pointer-events-none hidden md:inline-block bg-navy text-white text-sm font-semibold px-4 py-2 shadow-lg whitespace-nowrap opacity-0 translate-x-2 transition-all duration-300">
     {tooltip}
@@ -36,10 +37,37 @@ const href = `https://wa.me/${phoneNumber.replace(/[^0-9]/g, "")}${encodedMessag
   </a>
 </div>
 
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const fab = document.querySelector<HTMLElement>("[data-wa-fab]");
+    const hero = document.querySelector<HTMLElement>("[data-hero]");
+    if (!fab) return;
+    if (!hero) {
+      fab.classList.remove("wa-hidden");
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        fab.classList.toggle("wa-hidden", entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(hero);
+  });
+</script>
+
 <style>
   .wa-btn {
     border-radius: 9999px !important;
     background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  }
+  .wa-fab {
+    transition: opacity 300ms ease, transform 300ms ease;
+  }
+  .wa-fab.wa-hidden {
+    opacity: 0;
+    transform: translateY(1rem);
+    pointer-events: none;
   }
   .wa-tooltip {
     border-radius: 9999px !important;
