@@ -3,6 +3,7 @@ import BaseHead from "../components/layout/BaseHead.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
 import WhatsAppButton from "../components/ui/WhatsAppButton.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
 import restaurantDataIt from "../data/restaurant.json";
 import restaurantDataEn from "../data/en/restaurant.json";
 import { t, type Lang } from "../i18n/ui";
@@ -14,9 +15,11 @@ interface Props {
   ogType?: string;
   transparentNav?: boolean;
   lang?: Lang;
+  breadcrumbs?: Array<{ label: string; href?: string }>;
+  breadcrumbsOverlay?: boolean;
 }
 
-const { title, description, ogImage, ogType, transparentNav = false, lang = "it" } = Astro.props;
+const { title, description, ogImage, ogType, transparentNav = false, lang = "it", breadcrumbs, breadcrumbsOverlay = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 const restaurantData = lang === "en" ? restaurantDataEn : restaurantDataIt;
 
@@ -27,12 +30,14 @@ const pathMap: Record<string, string> = {
   "/galleria/": "/en/gallery/",
   "/la-cantina/": "/en/wine-cellar/",
   "/contatti/": "/en/contact/",
+  "/prenota/": "/en/book/",
   "/en/": "/",
   "/en/menu/": "/menu/",
   "/en/about-us/": "/chi-siamo/",
   "/en/gallery/": "/galleria/",
   "/en/wine-cellar/": "/la-cantina/",
   "/en/contact/": "/contatti/",
+  "/en/book/": "/prenota/",
 };
 const alternatePath = pathMap[currentPath] || currentPath;
 const alternateUrl = `https://taverna-del-porto.vercel.app${alternatePath}`;
@@ -48,7 +53,19 @@ const alternateUrl = `https://taverna-del-porto.vercel.app${alternatePath}`;
   <body class="bg-sand text-text font-body min-h-screen flex flex-col">
     <a href="#main-content" class="skip-link">{t(lang, "common.skipLink")}</a>
     <Navbar currentPath={currentPath} transparent={transparentNav} lang={lang} />
-    <main id="main-content" class="flex-1">
+    <main id="main-content" class="flex-1 relative">
+      {breadcrumbs && (
+        <div class:list={[
+          "pt-24 md:pt-28 pb-4",
+          breadcrumbsOverlay
+            ? "absolute top-0 left-0 right-0 z-20 pointer-events-none"
+            : "bg-sand border-b border-sand-dark/50",
+        ]}>
+          <div class="mx-auto max-w-7xl px-4 md:px-8 pointer-events-auto">
+            <Breadcrumbs items={breadcrumbs} light={breadcrumbsOverlay} />
+          </div>
+        </div>
+      )}
       <slot />
     </main>
     <Footer lang={lang} />

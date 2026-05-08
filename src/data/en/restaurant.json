@@ -9,9 +9,9 @@
     "cap": "89861",
     "country": "Italy"
   },
-  "phone": "+39 0963 61234",
-  "email": "info@tavernadelporto.it",
-  "whatsapp": "+39096361234",
+  "phone": "+39 0123 456 7890",
+  "email": "demo@example.com",
+  "whatsapp": "+390123456789",
   "whatsappMessage": "Hi! I'd like to book a table at Taverna del Porto.",
   "social": {
     "facebook": "#",
@@ -36,7 +36,7 @@
     "coverCharge": "Cover charge: €2.50 per person (includes bread, breadsticks and water)."
   },
   "coordinates": { "lat": 38.6767, "lng": 15.8987 },
-  "vatNumber": "IT01234567890",
+  "vatNumber": "IT00000000000",
   "priceRange": "$$",
   "cuisineType": ["Seafood", "Calabrian", "Mediterranean"],
   "foundedYear": 1985,

@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionTitle from "../components/ui/SectionTitle.astro";
-import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
 import winesData from "../data/wines.json";
 import restaurantData from "../data/restaurant.json";
 
@@ -14,6 +13,8 @@ const whatsappUrl = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g, 
 <BaseLayout
   title="La Cantina | Vini Calabresi a Tropea"
   description="La nostra selezione di vini calabresi: Cirò DOC, Greco di Bianco, bollicine e rosati. Ogni bottiglia scelta per esaltare i sapori del mare."
+  breadcrumbs={[{ label: "Home", href: "/" }, { label: "La Cantina" }]}
+  breadcrumbsOverlay={true}
 >
   <!-- Page header -->
   <section class="relative pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
@@ -25,9 +26,6 @@ const whatsappUrl = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g, 
     />
     <div class="absolute inset-0 bg-navy/70"></div>
     <div class="relative mx-auto max-w-4xl px-4 md:px-8">
-      <div class="mb-6">
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "La Cantina" }]} light={true} />
-      </div>
       <div data-reveal="fade-up">
         <SectionTitle
           title="La Cantina"
@@ -137,7 +135,7 @@ const whatsappUrl = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g, 
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="rounded-md bg-gold px-8 py-3 font-bold text-navy transition-all hover:bg-gold-light hover:scale-[1.02]"
+            class="rounded-md bg-gold px-8 py-3 font-bold text-white transition-all hover:bg-gold-light hover:scale-[1.02]"
           >
             Prenota un Tavolo
           </a>

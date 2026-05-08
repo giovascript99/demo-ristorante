@@ -17,12 +17,14 @@ const pathMap: Record<string, string> = {
   "/galleria/": "/en/gallery/",
   "/la-cantina/": "/en/wine-cellar/",
   "/contatti/": "/en/contact/",
+  "/prenota/": "/en/book/",
   "/en/": "/",
   "/en/menu/": "/menu/",
   "/en/about-us/": "/chi-siamo/",
   "/en/gallery/": "/galleria/",
   "/en/wine-cellar/": "/la-cantina/",
   "/en/contact/": "/contatti/",
+  "/en/book/": "/prenota/",
 };
 
 const alternateLang = lang === "it" ? "en" : "it";
@@ -49,6 +51,7 @@ const navLinks = lang === "it"
 const restaurantData = lang === "en" ? restaurantDataEn : restaurantDataIt;
 const homeHref = lang === "en" ? "/en/" : "/";
 const whatsappHref = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(restaurantData.whatsappMessage)}`;
+const bookingHref = lang === "en" ? "/en/book/" : "/prenota/";
 ---
 
 <nav
@@ -59,7 +62,7 @@ const whatsappHref = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g,
   ]}
   data-transparent={transparent ? "true" : "false"}
 >
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8" style="padding-top: max(1rem, env(safe-area-inset-top, 1rem))">
+  <div class="flex w-full items-center justify-between px-4 py-4 lg:px-10 xl:px-14" style="padding-top: max(1rem, env(safe-area-inset-top, 1rem))">
     <!-- Logo / Name with decorative anchor -->
     <a href={homeHref} class="group flex items-center gap-2.5">
       <svg class="h-7 w-7 text-gold transition-transform duration-300 group-hover:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -78,27 +81,20 @@ const whatsappHref = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g,
       </div>
     </a>
 
-    <!-- Desktop nav links with gold dot separators -->
-    <ul class="nav-links hidden items-center lg:flex">
-      {navLinks.map((link, i) => (
-        <>
-          {i > 0 && (
-            <li class="mx-3" aria-hidden="true">
-              <span class="block h-1 w-1 rounded-full bg-gold/40"></span>
-            </li>
-          )}
-          <li>
-            <a
-              href={link.href}
-              class:list={[
-                "nav-link relative py-2 text-[0.9375rem] font-semibold text-white/90 transition-colors hover:text-gold",
-                currentPath === link.href && "nav-link-active text-gold",
-              ]}
-            >
-              {link.label}
-            </a>
-          </li>
-        </>
+    <!-- Desktop nav links -->
+    <ul class="nav-links hidden items-center gap-10 xl:gap-12 lg:flex">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              "nav-link relative py-2 text-[0.9375rem] font-semibold text-white/90 transition-colors hover:text-gold",
+              currentPath === link.href && "nav-link-active text-gold",
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
       ))}
     </ul>
 
@@ -117,15 +113,13 @@ const whatsappHref = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g,
       </a>
 
       <a
-        href={whatsappHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="nav-cta group hidden items-center gap-1.5 rounded-md border border-gold/60 px-5 py-2 text-sm font-bold text-gold transition-all duration-300 hover:bg-gold hover:text-navy hover:border-gold lg:inline-flex"
+        href={bookingHref}
+        class="nav-cta group hidden items-center gap-2 bg-gold px-6 py-2.5 text-sm font-bold uppercase tracking-wider text-white shadow-md transition-all duration-300 hover:bg-gold-light hover:shadow-lg hover:-translate-y-0.5 lg:inline-flex"
       >
-        {lang === "it" ? "Prenota" : "Book"}
-        <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
         </svg>
+        {lang === "it" ? "Prenota" : "Book"}
       </a>
 
       <!-- Hamburger button (mobile) -->
@@ -189,10 +183,8 @@ const whatsappHref = `https://wa.me/${restaurantData.whatsapp.replace(/[^0-9]/g,
 
   <!-- CTA button -->
   <a
-    href={whatsappHref}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="mt-8 rounded-md bg-gold px-8 py-3 text-lg font-bold text-navy transition-all hover:bg-gold-light translate-y-4 opacity-0"
+    href={bookingHref}
+    class="mt-8 rounded-md bg-gold px-8 py-3 text-lg font-bold text-white transition-all hover:bg-gold-light translate-y-4 opacity-0"
   >
     {lang === "it" ? "Prenota" : "Book"}
   </a>

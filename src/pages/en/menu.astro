@@ -2,7 +2,6 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import MenuCategory from "../../components/menu/MenuCategory.astro";
 import SectionTitle from "../../components/ui/SectionTitle.astro";
-import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
 import menuData from "../../data/en/menu.json";
 import seoData from "../../data/seo.json";
 import { t } from "../../i18n/ui";
@@ -31,10 +30,12 @@ const menuJsonLd = {
   title="Menu | Fresh Seafood in Tropea"
   description="Discover our fresh seafood menu: sea starters, traditional Calabrian pasta, grilled mains and homemade desserts."
   lang={lang}
+  breadcrumbs={[{ label: "Home", href: "/en/" }, { label: "Menu" }]}
+  breadcrumbsOverlay={true}
 >
   <script type="application/ld+json" set:html={JSON.stringify(menuJsonLd)} />
 
-  <section class="relative pt-24 md:pt-32 pb-12 overflow-hidden">
+  <section class="relative pt-32 md:pt-40 pb-12 overflow-hidden">
     <img
       src="/images/menu/terrazza-tramonto.jpg"
       alt=""
@@ -43,9 +44,6 @@ const menuJsonLd = {
     />
     <div class="absolute inset-0 bg-navy/70"></div>
     <div class="relative mx-auto max-w-4xl px-4 md:px-8">
-      <div class="mb-6">
-        <Breadcrumbs items={[{ label: "Home", href: "/en/" }, { label: "Menu" }]} light={true} />
-      </div>
       <div data-reveal="fade-up">
         <SectionTitle
           title="Our Menu"
@@ -101,7 +99,7 @@ const menuJsonLd = {
         <span>{t(lang, "menu.allergenNote")}</span>
       </div>
       <p class="text-sm text-text-light italic">{t(lang, "menu.dailyNote")}</p>
-      <a href="/menu-en.pdf" download class="inline-flex items-center gap-2 rounded-md border border-gold text-gold px-5 py-2 text-sm font-semibold transition-all hover:bg-gold hover:text-navy">
+      <a href="/menu-en.pdf" download class="inline-flex items-center gap-2 rounded-md border border-gold text-gold px-5 py-2 text-sm font-semibold transition-all hover:bg-gold hover:text-white">
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
         {t(lang, "menu.downloadPdf")}
       </a>

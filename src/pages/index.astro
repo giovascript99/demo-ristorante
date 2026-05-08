@@ -20,8 +20,8 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
   <Hero
     title={restaurant.name}
     subtitle={restaurant.tagline}
-    ctaPrimary={{ text: "Scopri il Menu", href: "/menu/" }}
-    ctaSecondary={{ text: "Prenota un Tavolo", href: whatsappUrl }}
+    ctaPrimary={{ text: "Prenota un Tavolo", href: "/prenota/" }}
+    ctaSecondary={{ text: "Scopri il Menu", href: "/menu/" }}
   />
 
   <!-- 2. Chi Siamo brief -->
@@ -331,7 +331,7 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
       <div class="mt-12 text-center" data-reveal="fade-up">
         <a
           href="/menu/"
-          class="inline-flex items-center gap-2 rounded-md bg-gold px-8 py-3 text-base font-bold text-navy shadow-sm transition-all duration-300 hover:bg-gold-light hover:shadow-md"
+          class="inline-flex items-center gap-2 rounded-md bg-gold px-8 py-3 text-base font-bold text-white shadow-sm transition-all duration-300 hover:bg-gold-light hover:shadow-md"
         >
           Scopri il Nostro Menu
           <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -488,7 +488,7 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="rounded-md bg-gold px-8 py-3 text-base font-bold text-navy transition-all hover:bg-gold-light hover:scale-[1.02] hover:shadow-lg"
+          class="rounded-md bg-gold px-8 py-3 text-base font-bold text-white transition-all hover:bg-gold-light hover:scale-[1.02] hover:shadow-lg"
         >
           Scrivici su WhatsApp
         </a>

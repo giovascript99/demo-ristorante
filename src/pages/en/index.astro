@@ -22,8 +22,8 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
   <Hero
     title={restaurant.name}
     subtitle={restaurant.tagline}
-    ctaPrimary={{ text: t(lang, "home.cta.menu"), href: "/en/menu/" }}
-    ctaSecondary={{ text: t(lang, "home.cta.book"), href: whatsappUrl }}
+    ctaPrimary={{ text: t(lang, "home.cta.book"), href: "/en/book/" }}
+    ctaSecondary={{ text: t(lang, "home.cta.menu"), href: "/en/menu/" }}
   />
 
   <section class="py-20 md:py-28">
@@ -143,7 +143,7 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
         </div>
       </div>
       <div class="mt-12 text-center" data-reveal="fade-up">
-        <a href="/en/menu/" class="inline-flex items-center gap-2 rounded-md bg-gold px-8 py-3 text-base font-bold text-navy shadow-sm transition-all duration-300 hover:bg-gold-light hover:shadow-md">
+        <a href="/en/menu/" class="inline-flex items-center gap-2 rounded-md bg-gold px-8 py-3 text-base font-bold text-white shadow-sm transition-all duration-300 hover:bg-gold-light hover:shadow-md">
           {t(lang, "home.menu.cta")}
           <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
         </a>
@@ -226,7 +226,7 @@ const phoneHref = `tel:${restaurant.phone.replace(/\s/g, "")}`;
       <SectionTitle title={t(lang, "home.cta.final.title")} subtitle={t(lang, "home.cta.final.subtitle")} light={true} />
       <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
         <a href={phoneHref} class="rounded-md border-2 border-white px-8 py-3 text-base font-bold text-white transition-all hover:bg-white hover:text-navy">{restaurant.phone}</a>
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="rounded-md bg-gold px-8 py-3 text-base font-bold text-navy transition-all hover:bg-gold-light hover:scale-[1.02] hover:shadow-lg">{t(lang, "home.cta.final.whatsapp")}</a>
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="rounded-md bg-gold px-8 py-3 text-base font-bold text-white transition-all hover:bg-gold-light hover:scale-[1.02] hover:shadow-lg">{t(lang, "home.cta.final.whatsapp")}</a>
       </div>
     </div>
   </section>

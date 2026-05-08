@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionTitle from "../components/ui/SectionTitle.astro";
 import ValueCard from "../components/about/ValueCard.astro";
 import Timeline from "../components/about/Timeline.astro";
-import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
 import restaurantData from "../data/restaurant.json";
 
 const timelineEvents = [
@@ -35,12 +34,10 @@ const values = [
 <BaseLayout
   title="Chi Siamo | La Nostra Storia"
   description="Dal 1985, la famiglia Ferraro porta in tavola i sapori del mare di Tropea. Scopri la nostra storia, i nostri valori e la passione per la cucina calabrese."
+  breadcrumbs={[{ label: "Home", href: "/" }, { label: "Chi Siamo" }]}
 >
-  <section class="pt-24 md:pt-32 pb-16">
+  <section class="pt-10 md:pt-14 pb-16">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
-      <div class="mb-6">
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Chi Siamo" }]} />
-      </div>
       <div data-reveal="fade-up">
         <SectionTitle
           title="La Nostra Storia"

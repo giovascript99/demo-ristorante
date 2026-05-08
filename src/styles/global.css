@@ -1,5 +1,26 @@
 @import "tailwindcss";
 
+/* Global: no rounded corners on buttons, boxes, cards site-wide */
+*, *::before, *::after {
+  border-radius: 0 !important;
+}
+
+/* Global: thinner font weights site-wide */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+.font-bold,
+.font-extrabold,
+.font-black {
+  font-weight: 500 !important;
+}
+.font-semibold {
+  font-weight: 500 !important;
+}
+strong, b {
+  font-weight: 500;
+}
+
 @theme {
   --color-navy: #162B3D;
   --color-navy-light: #1E3A52;
@@ -68,12 +89,6 @@ h1, h2, h3, h4 {
   top: -15%;
 }
 
-/* WhatsApp pulse */
-@keyframes wa-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-  50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
-}
-
 /* Hero bounce arrow */
 @keyframes bounce-down {
   0%, 100% { transform: translateY(0); }
@@ -100,19 +115,6 @@ h1, h2, h3, h4 {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  border-bottom: 1px solid color-mix(in srgb, var(--color-gold) 25%, transparent);
-}
-
-/* Navbar CTA button — filled style when scrolled */
-.nav-scrolled .nav-cta {
-  background-color: var(--color-gold);
-  color: var(--color-navy);
-  border-color: var(--color-gold);
-}
-.nav-scrolled .nav-cta:hover {
-  background-color: var(--color-gold-light);
-  border-color: var(--color-gold-light);
-  color: var(--color-navy);
 }
 
 /* Desktop nav link underline — expands from center */

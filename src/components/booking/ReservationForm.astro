@@ -1,0 +1,275 @@
+---
+interface Props {
+  lang?: "it" | "en";
+}
+
+const { lang = "it" } = Astro.props;
+
+const t = {
+  it: {
+    date: "Data *",
+    time: "Orario *",
+    timePlaceholder: "Seleziona un orario",
+    serviceLunch: "Pranzo",
+    serviceDinner: "Cena",
+    guests: "Persone *",
+    guestsSuffix: (n: number) => (n === 1 ? "1 persona" : `${n} persone`),
+    name: "Nome e Cognome *",
+    email: "Email *",
+    phone: "Telefono *",
+    occasion: "Occasione",
+    occasionPlaceholder: "Nessuna occasione particolare",
+    occasions: ["Cena casual", "Anniversario", "Compleanno", "Cena di lavoro", "Romantico", "Altro"],
+    requests: "Richieste speciali",
+    requestsPh: "Allergie, intolleranze, tavolo specifico, sedia per bambini...",
+    notice: "Lunedì siamo chiusi. Per gruppi oltre 10 persone vi preghiamo di contattarci direttamente.",
+    submit: "Conferma Prenotazione",
+    successTitle: "Prenotazione ricevuta!",
+    successText: "Riceverai una email di conferma a breve. Per modifiche o cancellazioni contattaci al",
+    backHome: "Torna alla Home",
+    demoNote: "Demo dimostrativa — nessun dato viene realmente inviato.",
+  },
+  en: {
+    date: "Date *",
+    time: "Time *",
+    timePlaceholder: "Select a time",
+    serviceLunch: "Lunch",
+    serviceDinner: "Dinner",
+    guests: "Guests *",
+    guestsSuffix: (n: number) => (n === 1 ? "1 guest" : `${n} guests`),
+    name: "Full Name *",
+    email: "Email *",
+    phone: "Phone *",
+    occasion: "Occasion",
+    occasionPlaceholder: "No special occasion",
+    occasions: ["Casual dinner", "Anniversary", "Birthday", "Business dinner", "Romantic", "Other"],
+    requests: "Special requests",
+    requestsPh: "Allergies, dietary needs, specific table, high chair...",
+    notice: "We are closed on Mondays. For groups larger than 10, please contact us directly.",
+    submit: "Confirm Reservation",
+    successTitle: "Reservation received!",
+    successText: "You will receive a confirmation email shortly. For changes or cancellations call us at",
+    backHome: "Back to Home",
+    demoNote: "Demo only — no data is actually submitted.",
+  },
+}[lang];
+
+const lunchSlots = ["12:00", "12:30", "13:00", "13:30", "14:00"];
+const dinnerSlots = ["19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"];
+const guestCounts = Array.from({ length: 12 }, (_, i) => i + 1);
+const phoneDisplay = "+39 0123 456 7890";
+const homeHref = lang === "en" ? "/en/" : "/";
+---
+
+<form
+  id="reservation-form"
+  class="grid gap-5 sm:grid-cols-2"
+  novalidate
+>
+  <!-- Honeypot -->
+  <div class="hidden" aria-hidden="true">
+    <label>Leave empty <input type="text" name="bot-field" tabindex="-1" autocomplete="off" /></label>
+  </div>
+
+  <!-- Date -->
+  <div>
+    <label for="rsv-date" class="block text-sm font-semibold text-navy mb-1.5">{t.date}</label>
+    <input
+      type="date"
+      id="rsv-date"
+      name="date"
+      required
+      class="w-full border border-sand-dark bg-white px-4 py-3 text-text transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+    />
+  </div>
+
+  <!-- Time -->
+  <div>
+    <label for="rsv-time" class="block text-sm font-semibold text-navy mb-1.5">{t.time}</label>
+    <select
+      id="rsv-time"
+      name="time"
+      required
+      class="w-full border border-sand-dark bg-white px-4 py-3 text-text transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+    >
+      <option value="">{t.timePlaceholder}</option>
+      <optgroup label={t.serviceLunch}>
+        {lunchSlots.map((slot) => <option value={slot}>{slot}</option>)}
+      </optgroup>
+      <optgroup label={t.serviceDinner}>
+        {dinnerSlots.map((slot) => <option value={slot}>{slot}</option>)}
+      </optgroup>
+    </select>
+  </div>
+
+  <!-- Guests -->
+  <div class="sm:col-span-2">
+    <label for="rsv-guests" class="block text-sm font-semibold text-navy mb-1.5">{t.guests}</label>
+    <select
+      id="rsv-guests"
+      name="guests"
+      required
+      class="w-full border border-sand-dark bg-white px-4 py-3 text-text transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+    >
+      {guestCounts.map((n) => <option value={n}>{t.guestsSuffix(n)}</option>)}
+    </select>
+  </div>
+
+  <!-- Name -->
+  <div class="sm:col-span-2">
+    <label for="rsv-name" class="block text-sm font-semibold text-navy mb-1.5">{t.name}</label>
+    <input
+      type="text"
+      id="rsv-name"
+      name="name"
+      required
+      autocomplete="name"
+      class="w-full border border-sand-dark bg-white px-4 py-3 text-text transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+    />
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label for="rsv-email" class="block text-sm font-semibold text-navy mb-1.5">{t.email}</label>
+    <input
+      type="email"
+      id="rsv-email"
+      name="email"
+      required
+      autocomplete="email"
+      class="w-full border border-sand-dark bg-white px-4 py-3 text-text transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+    />
+  </div>
+
+  <!-- Phone -->
+  <div>
+    <label for="rsv-phone" class="block text-sm font-semibold text-navy mb-1.5">{t.phone}</label>
+    <input
+      type="tel"
+      id="rsv-phone"
+      name="phone"
+      required
+      autocomplete="tel"
+      class="w-full border border-sand-dark bg-white px-4 py-3 text-text transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+    />
+  </div>
+
+  <!-- Occasion -->
+  <div class="sm:col-span-2">
+    <label for="rsv-occasion" class="block text-sm font-semibold text-navy mb-1.5">{t.occasion}</label>
+    <select
+      id="rsv-occasion"
+      name="occasion"
+      class="w-full border border-sand-dark bg-white px-4 py-3 text-text transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+    >
+      <option value="">{t.occasionPlaceholder}</option>
+      {t.occasions.map((o) => <option value={o}>{o}</option>)}
+    </select>
+  </div>
+
+  <!-- Requests -->
+  <div class="sm:col-span-2">
+    <label for="rsv-requests" class="block text-sm font-semibold text-navy mb-1.5">{t.requests}</label>
+    <textarea
+      id="rsv-requests"
+      name="requests"
+      rows="4"
+      placeholder={t.requestsPh}
+      class="w-full border border-sand-dark bg-white px-4 py-3 text-text transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 resize-y"
+    ></textarea>
+  </div>
+
+  <!-- Notice -->
+  <div class="sm:col-span-2 border-l-4 border-gold bg-gold/5 px-4 py-3 text-sm text-text-light">
+    {t.notice}
+  </div>
+
+  <!-- Submit -->
+  <div class="sm:col-span-2 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <p class="text-xs italic text-text-light/70">{t.demoNote}</p>
+    <button
+      type="submit"
+      class="bg-gold px-8 py-3 font-bold text-white transition-all hover:bg-gold-light hover:scale-[1.02] hover:shadow-md focus:outline-2 focus:outline-offset-2 focus:outline-gold"
+    >
+      {t.submit}
+    </button>
+  </div>
+</form>
+
+<!-- Success card -->
+<div id="reservation-success" class="hidden border border-gold/40 bg-gold/5 p-8 text-center">
+  <svg class="mx-auto h-14 w-14 text-gold mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+  </svg>
+  <h3 class="font-heading text-2xl text-navy">{t.successTitle}</h3>
+  <p class="mt-3 text-text-light">
+    {t.successText} <a href={`tel:${phoneDisplay.replace(/\s/g, "")}`} class="text-gold underline">{phoneDisplay}</a>.
+  </p>
+  <div id="reservation-summary" class="mt-6 inline-block border border-sand-dark bg-white px-6 py-4 text-left text-sm text-text-light"></div>
+  <div class="mt-6">
+    <a href={homeHref} class="inline-block border border-navy/40 px-6 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-navy hover:text-white">
+      {t.backHome}
+    </a>
+  </div>
+</div>
+
+<script is:inline define:vars={{ lang }}>
+  const labels = lang === "en"
+    ? { date: "Date", time: "Time", guests: "Guests", name: "Name", email: "Email", phone: "Phone", occasion: "Occasion", requests: "Requests" }
+    : { date: "Data", time: "Orario", guests: "Persone", name: "Nome", email: "Email", phone: "Telefono", occasion: "Occasione", requests: "Richieste" };
+
+  function escape(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  function init() {
+    const form = document.getElementById("reservation-form");
+    const success = document.getElementById("reservation-success");
+    const summary = document.getElementById("reservation-summary");
+    const dateInput = document.getElementById("rsv-date");
+
+    if (!form || form.dataset.bound === "1") return;
+    form.dataset.bound = "1";
+
+    if (dateInput) {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, "0");
+      const dd = String(today.getDate()).padStart(2, "0");
+      dateInput.min = `${yyyy}-${mm}-${dd}`;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const data = new FormData(form);
+      if (data.get("bot-field")) return;
+
+      const rows = [
+        [labels.date, data.get("date")],
+        [labels.time, data.get("time")],
+        [labels.guests, data.get("guests")],
+        [labels.name, data.get("name")],
+        [labels.email, data.get("email")],
+        [labels.phone, data.get("phone")],
+        [labels.occasion, data.get("occasion") || "—"],
+        [labels.requests, data.get("requests") || "—"],
+      ];
+      if (summary) {
+        summary.innerHTML = rows
+          .map(([k, v]) => `<div class="grid grid-cols-[110px_1fr] gap-2 py-0.5"><span class="font-semibold text-navy">${escape(k)}</span><span>${escape(v)}</span></div>`)
+          .join("");
+      }
+
+      form.classList.add("hidden");
+      success?.classList.remove("hidden");
+      success?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  document.addEventListener("astro:page-load", init);
+  init();
+</script>
